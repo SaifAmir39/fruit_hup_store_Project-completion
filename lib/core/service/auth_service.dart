@@ -1,5 +1,7 @@
 
 
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruit_hup_store/core/errors/custome%20_exception.dart';
 
@@ -15,6 +17,8 @@ return credential.user!;
 } 
 
 on FirebaseAuthException catch (e) {
+        log("exception in FirebaseService.createuserwithemailanpassword : ${e.toString()} ");
+
   if (e.code == 'weak-password') {
   throw CustomeException(massage: ("'The password provided is too weak."));
   } else if (e.code == 'email-already-in-use') {

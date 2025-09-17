@@ -9,7 +9,6 @@ static const routeName="splash";
     return Scaffold(
       body: SplashViweBody(),
     );
-    throw UnimplementedError();
   }
 
 }

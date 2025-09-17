@@ -1,5 +1,5 @@
 
-
+import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hup_store/core/errors/custome%20_exception.dart';
 import 'package:fruit_hup_store/core/errors/failer.dart';
@@ -31,8 +31,16 @@ class AuthRepoImplementions implements AuthRepo {
 
 on CustomeException catch (e){
  
-return left(serverfailererror(e.toString()));
+return left(serverfailererror(e.massage));
+
 }
+  catch(e){
+      log("exception in createuserwithemailanpassword : ${e.toString()} ");
+       return left(serverfailererror(e.toString()));
+
+
+}
+
   
 
     

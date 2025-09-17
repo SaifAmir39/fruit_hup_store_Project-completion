@@ -4,22 +4,22 @@ import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
 import 'package:fruit_hup_store/features/on_boardin/presentation/Viwes/widgets/Page%20Viwe_iteam.dart';
 
 class OnBordaingPageviwe extends StatelessWidget {
-PageController pageController;
- 
-OnBordaingPageviwe({required this. pageController});
-  
+  final PageController pageController;
+
+  OnBordaingPageviwe({required this.pageController});
+
   @override
   Widget build(BuildContext context) {
-    
     return PageView(
       controller: pageController,
-      
-      
+
       scrollDirection: Axis.horizontal,
       children: [
         PageviweIteam(
-          isvisble:(pageController.hasClients?pageController.page!.round():0)!=1,
-         
+          isvisble:
+              (pageController.hasClients ? pageController.page!.round() : 0) !=
+              1,
+
           image: Assets.imagesPageViewItem1Image,
           backgroungimage: Assets.imagesPageViewItem1BackgroundImage,
           subtitle:
@@ -27,19 +27,27 @@ OnBordaingPageviwe({required this. pageController});
           text: Row(
             mainAxisAlignment: MainAxisAlignment.center,
 
-            children: [Text("مرحبًا بك في ",style: TextStyles.bold23), Text("Fruit",
-            style:TextStyles.bold23.copyWith(color: Color(0xFF1B5E37) ) ,
-            ), Text("HUB",
-            style:TextStyles.bold23.copyWith(color: Color(0xFFf4A91f)),
-            )],
+            children: [
+              Text("مرحبًا بك في ", style: TextStyles.bold23),
+              Text(
+                "Fruit",
+                style: TextStyles.bold23.copyWith(color: Color(0xFF1B5E37)),
+              ),
+              Text(
+                "HUB",
+                style: TextStyles.bold23.copyWith(color: Color(0xFFf4A91f)),
+              ),
+            ],
           ),
         ),
         PageviweIteam(
-         isvisble:(pageController.hasClients?pageController.page!.round():0)!=1,
+          isvisble:
+              (pageController.hasClients ? pageController.page!.round() : 0) !=
+              1,
           image: Assets.imagesPageViewItem2Image,
           backgroungimage: Assets.imagesPageViewItem2BackgroundImage,
           subtitle:
-            "نقدم لك أفضل الفواكه المختارة بعناية. اطلع على \nالتفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية",
+              "نقدم لك أفضل الفواكه المختارة بعناية. اطلع على \nالتفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية",
           text: Row(
             mainAxisAlignment: MainAxisAlignment.center,
 
@@ -48,6 +56,5 @@ OnBordaingPageviwe({required this. pageController});
         ),
       ],
     );
-    throw UnimplementedError();
   }
 }
