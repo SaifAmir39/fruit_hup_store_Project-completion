@@ -25,6 +25,7 @@ class _SignupViweBodyState extends State<SignupViweBody> {
   Widget build(BuildContext context) {
     return Form(
       key: formkey,
+      autovalidateMode: autovalidateMode,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -72,6 +73,7 @@ class _SignupViweBodyState extends State<SignupViweBody> {
                   ).createuserwithemailanpassword(
                     email: textcontrrolemail.text,
                     password: textcontrrolpassword.text,
+                    name: textcontrrolname.text,
                   );
                 
 

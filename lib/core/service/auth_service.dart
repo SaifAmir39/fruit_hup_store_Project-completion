@@ -1,46 +1,93 @@
-
-
 import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruit_hup_store/core/errors/custome%20_exception.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
-  Future<User> createUserWiheEmailAndPassword({required String email,required String password})async{
-  try {
-  final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-    email: email,
-    password: password,
+  Future<User> createUserWiheEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+
+      return credential.user!;
+    } on FirebaseAuthException catch (e) {
+      log(
+        "exception in FirebaseService.createuserwithemailanpassword : ${e.toString()} ",
+      );
+
+      if (e.code == 'weak-password') {
+        throw CustomeException(
+          massage: ("'The password provided is too weak."),
+        );
+      } else if (e.code == 'email-already-in-use') {
+        throw CustomeException(
+          massage: ('The account already exists for that email.'),
+        );
+      } else {
+        throw CustomeException(
+          massage: ("Oops there was an error , try again later"),
+        );
+      }
+    } catch (e) {
+      throw Exception("Unexpected error: $e");
+    }
+  }
+
+  Future<User> signinuserwithanemailandpassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      return credential.user!;
+    } on FirebaseAuthException catch (e) {
+      log(
+        "exception in FirebaseService.createuserwithemailanpassword : ${e.toString()} ",
+      );
+
+      if (e.code == 'invalid-email') {
+        throw CustomeException(massage: ('No user found for that email.'));
+      }else if(e.code == 'user-not-found'
+){
+
+  throw CustomeException(massage: "no email found");
+}
+      
+      
+       else if (e.code == 'wrong-password') {
+        throw CustomeException(
+          massage: ('Wrong password provided for that user.'),
+        );
+      } else {
+        throw CustomeException(
+          massage: ('Wrong password provided for that user.'),
+        );
+      }
+    } catch (e) {
+          throw CustomeException(massage: "Unexpected error: $e"); 
+
+    }
+  }
+
+ Future<User> signInWithGoogle() async {
+  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+  final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth?.accessToken,
+    idToken: googleAuth?.idToken,
   );
 
-return credential.user!;
-} 
-
-on FirebaseAuthException catch (e) {
-        log("exception in FirebaseService.createuserwithemailanpassword : ${e.toString()} ");
-
-  if (e.code == 'weak-password') {
-  throw CustomeException(massage: ("'The password provided is too weak."));
-  } else if (e.code == 'email-already-in-use') {
-   throw CustomeException(massage: ('The account already exists for that email.'));
-  }
-
-else{
-
-  throw CustomeException(massage: ("Oops there was an error , try again later"));
+  return (await FirebaseAuth.instance.signInWithCredential(credential)).user!;
 }
-
-  
-    
-} catch (e) {
-
-      throw Exception("Unexpected error: $e");
-
-}
-
-
-
-  }
 
 
 }
