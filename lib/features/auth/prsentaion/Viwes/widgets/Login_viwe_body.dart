@@ -94,7 +94,9 @@ class _LoginViweBodyState extends State<LoginViweBody> {
                      SocailLoginButton(onpaessed:(){}, image: Assets.imagesApplIcon, title: "تسجيل بواسطة أبل"),
                                      SizedBox(height: 16,),
         
-                    SocailLoginButton(onpaessed:(){}, image: Assets.imagesFacebookIcon, title: "تسجيل بواسطة فيسبوك"),
+                    SocailLoginButton(onpaessed:(){
+                        BlocProvider.of<SignInCubit>(context).siginwithfacebook();
+                    }, image: Assets.imagesFacebookIcon, title: "تسجيل بواسطة فيسبوك"),
                                     SizedBox(height: 16,),
         
         

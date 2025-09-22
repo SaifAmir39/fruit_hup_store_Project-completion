@@ -9,7 +9,7 @@ abstract  class AuthRepo {
 Future<Either<failer,Userentitie>>createuserwithemailanpassword(String email , String password,String name);
 Future<Either<failer,Userentitie>>signinuserwithanemailandpassword(String email , String password);
 Future<Either<failer,Userentitie>>signInWithGoogle();
-
+Future<Either<failer,Userentitie>>signInWithFacebook();
 
 
  

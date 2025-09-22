@@ -33,9 +33,17 @@ reslut.fold(
 
 
 }
+Future<void>siginwithfacebook()async{
+emit(SignInloading());                    
+final reslut=await authRepo.signInWithFacebook(); 
+reslut.fold(
+  (failer) => emit(SignInfailer(errormassge: failer.massage)),
+  (userEntitie) => emit(SignInsucess(userentitie: userEntitie)),  
+  );
 
 
 
 
 
+}
 }

@@ -75,6 +75,26 @@ class AuthRepoImplementions implements AuthRepo {
     }
     
   }
+  
+  @override
+  Future<Either<failer, Userentitie>> signInWithFacebook()async {
+      try{
+    var user =await AuthService().signInWithFacebook();
+
+    return right(UserModel.fromFirebaseUser(user));
+
+    }
+    
+    catch(e){
+       log("exception in Signinuserwithanemailandpassword : ${e.toString()} ");
+      return left(serverfailererror("Oops there was an error try again later palecs"));
+
+
+
+
+
+    }
+  }
 
 
   

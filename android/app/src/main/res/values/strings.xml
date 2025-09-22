@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ <string name="app_name">fruit hup store</string>
+ <string name="facebook_app_id">1325596602293183</string>
+ <string name="fb_login_protocol_scheme">fb23ffa47c0e5adcfb695348708517852b</string>
+ <string name="facebook_client_token">23ffa47c0e5adcfb695348708517852b</string>   
+</resources>
