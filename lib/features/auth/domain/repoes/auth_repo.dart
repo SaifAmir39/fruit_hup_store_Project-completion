@@ -10,8 +10,6 @@ Future<Either<failer,Userentitie>>createuserwithemailanpassword(String email , S
 Future<Either<failer,Userentitie>>signinuserwithanemailandpassword(String email , String password);
 Future<Either<failer,Userentitie>>signInWithGoogle();
 Future<Either<failer,Userentitie>>signInWithFacebook();
-
-
- 
+Future<void> adduserToFirestore({required Userentitie user});
 
 }

@@ -101,5 +101,15 @@ Future<User> signInWithFacebook() async {
   return (await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential)).user!;
 }
 
-
+Future<void>deleteuser()async{
+  try{
+    await FirebaseAuth.instance.currentUser!.delete();
+  }on FirebaseAuthException catch(e){
+    if(e.code=='requires-recent-login'){
+      throw CustomeException(massage: "The user must reauthenticate before this operation can be executed.");
+    }
+  }catch(e){
+    throw CustomeException(massage: "Unexpected error: $e"); 
+  }
+}
 }
