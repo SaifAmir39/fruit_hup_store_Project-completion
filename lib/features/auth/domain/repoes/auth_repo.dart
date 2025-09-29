@@ -11,5 +11,5 @@ Future<Either<failer,Userentitie>>signinuserwithanemailandpassword(String email 
 Future<Either<failer,Userentitie>>signInWithGoogle();
 Future<Either<failer,Userentitie>>signInWithFacebook();
 Future<void> adduserToFirestore({required Userentitie user});
-
+Future<Userentitie> getuserdata({ required String uid});
 }

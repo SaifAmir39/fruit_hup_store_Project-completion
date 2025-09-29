@@ -87,6 +87,9 @@ class AuthService {
     idToken: googleAuth?.idToken,
   );
 
+
+  
+
   return (await FirebaseAuth.instance.signInWithCredential(credential)).user!;
 }
 

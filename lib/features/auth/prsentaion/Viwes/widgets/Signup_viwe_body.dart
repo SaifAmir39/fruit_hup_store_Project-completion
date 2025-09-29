@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup_store/core/utils/Custome%20Bottun.dart';
 import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
 import 'package:fruit_hup_store/core/utils/custome%20_txet_form_failed.dart';
-import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/cubits/signup_cubit_cubit.dart';
+import 'package:fruit_hup_store/features/auth/prsentaion/cubits/signup_cubit_cubit.dart';
 import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/widgets/D0_you_have%20account_widget.dart';
 import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/widgets/Terms%20_and_%20Conditions.dart';
 import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/widgets/password_text_failed.dart';

@@ -10,4 +10,14 @@ class UserModel extends Userentitie {
 return UserModel(email: user.email ?? "", name: user.displayName?? "", udi: user.uid ?? "");
 
   }
+
+  factory UserModel.fromJson( Map<String,dynamic> json ){
+    return UserModel(
+      email: json['email'],
+      name: json['name'],
+      udi: json['udi'],
+    );
+
+
+  }
 }

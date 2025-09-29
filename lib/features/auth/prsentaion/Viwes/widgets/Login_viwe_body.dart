@@ -5,7 +5,7 @@ import 'package:fruit_hup_store/core/utils/Custome%20Bottun.dart';
 import 'package:fruit_hup_store/core/utils/app_images.dart';
 import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
 import 'package:fruit_hup_store/core/utils/custome%20_txet_form_failed.dart';
-import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/cubits/sign_in_cubit.dart';
+import 'package:fruit_hup_store/features/auth/prsentaion/cubits/sign_in_cubit.dart';
 import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/signup_Viwe.dart';
 import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/widgets/D0_you_have%20account_widget.dart';
 import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/widgets/Or_signup_widget.dart';

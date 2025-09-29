@@ -6,7 +6,7 @@ import 'package:fruit_hup_store/core/utils/app_colors.dart';
 import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
 import 'package:fruit_hup_store/core/utils/helper_functions/Custome%20_Appbar.dart';
 import 'package:fruit_hup_store/features/auth/domain/repoes/auth_repo.dart';
-import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/cubits/sign_in_cubit.dart';
+import 'package:fruit_hup_store/features/auth/prsentaion/cubits/sign_in_cubit.dart';
 import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/widgets/Login_viwe_body.dart';
 
 class LoinViwe extends StatelessWidget {
