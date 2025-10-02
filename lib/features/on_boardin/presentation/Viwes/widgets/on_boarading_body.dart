@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:fruit_hup_store/core/utils/Custome%20Bottun.dart';
 import 'package:fruit_hup_store/core/utils/app_colors.dart';
@@ -7,6 +6,8 @@ import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/loin_viwe.dart';
 import 'package:fruit_hup_store/features/on_boardin/presentation/Viwes/widgets/on_bordaing_pageviwe.dart';
 
 class OnBoaradingBody extends StatefulWidget {
+  const OnBoaradingBody({super.key});
+
   @override
   State<OnBoaradingBody> createState() => _OnBoaradingBodyState();
 }
@@ -39,7 +40,7 @@ class _OnBoaradingBodyState extends State<OnBoaradingBody> {
     return Scaffold(
       body: Column(
         children: [
-          Expanded(child: OnBordaingPageviwe(pageController: pageController!)),
+          Expanded(child: OnBordaingPageviwe(pageController: pageController)),
           SizedBox(height: 75),
           DotsIndicator(
             dotsCount: 2,

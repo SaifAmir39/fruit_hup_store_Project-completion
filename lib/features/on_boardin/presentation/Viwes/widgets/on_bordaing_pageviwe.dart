@@ -6,7 +6,7 @@ import 'package:fruit_hup_store/features/on_boardin/presentation/Viwes/widgets/P
 class OnBordaingPageviwe extends StatelessWidget {
   final PageController pageController;
 
-  OnBordaingPageviwe({required this.pageController});
+  const OnBordaingPageviwe({required this.pageController});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class OnBordaingPageviwe extends StatelessWidget {
         PageviweIteam(
           isvisble:
               (pageController.hasClients ? pageController.page!.round() : 0) !=
-              1,
+              1,  
 
           image: Assets.imagesPageViewItem1Image,
           backgroungimage: Assets.imagesPageViewItem1BackgroundImage,

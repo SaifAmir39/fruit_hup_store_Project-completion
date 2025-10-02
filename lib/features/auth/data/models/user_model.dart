@@ -7,7 +7,7 @@ class UserModel extends Userentitie {
 
   factory UserModel.fromFirebaseUser(User user){
 
-return UserModel(email: user.email ?? "", name: user.displayName?? "", udi: user.uid ?? "");
+return UserModel(email: user.email ?? "", name: user.displayName?? "", udi: user.uid );
 
   }
 

@@ -8,6 +8,7 @@ import 'package:fruit_hup_store/core/utils/helper_functions/Custome%20_Appbar.da
 import 'package:fruit_hup_store/features/auth/domain/repoes/auth_repo.dart';
 import 'package:fruit_hup_store/features/auth/prsentaion/cubits/sign_in_cubit.dart';
 import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/widgets/Login_viwe_body.dart';
+import 'package:fruit_hup_store/features/home/prsentation/viwes/home_viwe.dart';
 
 class LoinViwe extends StatelessWidget {
   static const routeName = "Login_viwe";
@@ -25,6 +26,7 @@ class LoinViwe extends StatelessWidget {
 
 
             if (state is SignInsucess){
+                   Navigator.pushNamedAndRemoveUntil(context,   HomeViwe.routeName, (route) => false);
              
                ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
