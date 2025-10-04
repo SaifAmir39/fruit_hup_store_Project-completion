@@ -93,7 +93,8 @@ class ActiveItem extends StatelessWidget {
   ActiveItem({required this.image, required this.name});
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 4),
       padding: EdgeInsets.only(right: 16,left: 5),
       width: 81,
       height: 30,
@@ -105,8 +106,8 @@ class ActiveItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
        
-          Container(
-           
+          AnimatedContainer(
+           duration: Duration(milliseconds: 4),
             width: 30,
             height: 30,
             decoration: ShapeDecoration(

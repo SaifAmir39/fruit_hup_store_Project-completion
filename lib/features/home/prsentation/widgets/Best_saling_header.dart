@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
+import 'package:fruit_hup_store/features/best_selling/presnetation/views/best_selling_view.dart';
 
 class BestSalingHeader  extends StatelessWidget{
   @override
@@ -10,7 +11,15 @@ class BestSalingHeader  extends StatelessWidget{
         Text("الأكثر مبيعاً",textAlign:TextAlign.right , style: TextStyles.bold16.copyWith(
           color: Color(0xFF0C0D0D),
         ),),
-        Text("المزيد ",textAlign:TextAlign.right,style:TextStyles.regular13),
+
+        GestureDetector(
+          onTap: (){
+
+         Navigator.pushNamed(context, BestSellingView.routeName);
+
+          },
+        child:  Text("المزيد ",textAlign:TextAlign.right,style:TextStyles.regular13),
+        ),
       ],  
     );
   }
