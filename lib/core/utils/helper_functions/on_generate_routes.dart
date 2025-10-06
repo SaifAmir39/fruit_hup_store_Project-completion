@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:fruit_hup_store/features/Splash_/presentation/Viwes/widgets/Splash_View.dart';
+import 'package:fruit_hup_store/features/Splash_/presentation/Viwes/Splash_View.dart';
 import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/loin_viwe.dart';
 import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/signup_Viwe.dart';
 import 'package:fruit_hup_store/features/best_selling/presnetation/views/best_selling_view.dart';

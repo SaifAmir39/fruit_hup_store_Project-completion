@@ -4,8 +4,8 @@ import 'package:fruit_hup_store/core/service/get_it_service.dart';
 import 'package:fruit_hup_store/core/service/shared_preferences_singletone.dart';
 import 'package:fruit_hup_store/core/utils/app_colors.dart';
 import 'package:fruit_hup_store/core/utils/helper_functions/on_generate_routes.dart';
-import 'package:fruit_hup_store/features/Splash_/presentation/Viwes/widgets/Splash_View.dart';
-import 'package:fruit_hup_store/firebase_options.dart';
+import 'package:fruit_hup_store/features/Splash_/presentation/Viwes/Splash_View.dart';
+import 'package:fruit_hup_store/features/Splash_/presentation/Viwes/firebase_options.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();

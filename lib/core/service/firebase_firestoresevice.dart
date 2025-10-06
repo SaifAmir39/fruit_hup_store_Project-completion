@@ -33,9 +33,6 @@ class FirebaseFirestoresevice implements DatabaseService {
   var data= await firestore.collection(path).doc(uid).get();
   return UserModel.fromJson(data.data() as Map<String,dynamic>);
 
-
-
-
   }
   
   @override
@@ -46,6 +43,8 @@ class FirebaseFirestoresevice implements DatabaseService {
   return data.exists;
     
   }
+  
+ 
   
 }
  

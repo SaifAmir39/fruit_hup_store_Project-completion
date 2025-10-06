@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -5,10 +6,12 @@ import 'package:fruit_hup_store/core/errors/custome%20_exception.dart';
 import 'package:fruit_hup_store/core/errors/failer.dart';
 import 'package:fruit_hup_store/core/service/Database_service.dart';
 import 'package:fruit_hup_store/core/service/auth_service.dart';
+import 'package:fruit_hup_store/core/service/shared_preferences_singletone.dart';
 import 'package:fruit_hup_store/core/utils/backend_endpoint.dart';
 import 'package:fruit_hup_store/features/auth/data/models/user_model.dart';
 import 'package:fruit_hup_store/features/auth/domain/entities/user%20_entitie.dart';
 import 'package:fruit_hup_store/features/auth/domain/repoes/auth_repo.dart';
+
 class AuthRepoImplementions implements AuthRepo {
   AuthService authService;
   DatabaseService databaseService;
@@ -23,21 +26,20 @@ class AuthRepoImplementions implements AuthRepo {
     String password,
     String name,
   ) async {
-      User? user;
+    User? user;
     try {
-       user = await authService.createUserWiheEmailAndPassword(
+      user = await authService.createUserWiheEmailAndPassword(
         email: email,
         password: password,
       );
-    var userentity=Userentitie(email: email, name: name, udi: user.uid);
+      var userentity = Userentitie(email: email, name: name, udi: user.uid);
 
-      await adduserToFirestore(user:userentity);
+      await adduserToFirestore(user: userentity);
       return right(userentity);
     } on CustomeException catch (e) {
       if (user != null) {
         await user.delete();
-      } 
-
+      }
 
       return left(serverfailererror(e.massage));
     } catch (e) {
@@ -56,7 +58,8 @@ class AuthRepoImplementions implements AuthRepo {
         email: email,
         password: password,
       );
-       var userentite=await getuserdata(uid: user.uid);
+      var userentite = await getuserdata(uid: user.uid);
+      await saveuser(user: userentite);
       return right(userentite);
     } on CustomeException catch (e) {
       return left(serverfailererror(e.massage));
@@ -68,29 +71,26 @@ class AuthRepoImplementions implements AuthRepo {
 
   @override
   Future<Either<failer, Userentitie>> signInWithGoogle() async {
-    User ? user;
-    
+    User? user;
+
     try {
-     user = await AuthService().signInWithGoogle();
-        var userentite=UserModel.fromFirebaseUser(user);
+      user = await AuthService().signInWithGoogle();
+      var userentite = UserModel.fromFirebaseUser(user);
+      await adduserToFirestore(user: userentite);
+      var isexsite = await databaseService.checkifdocumentexit(
+        path: BackendEndpoint.getUsersData,
+        documentid: user.uid,
+      );
+      if (!isexsite) {
         await adduserToFirestore(user: userentite);
-        var isexsite=await databaseService.checkifdocumentexit(path: BackendEndpoint.getUsersData, documentid: user.uid);
-        if(!isexsite){
-          await adduserToFirestore(user: userentite);
-        }
-          else{
-            await getuserdata(uid: user.uid);
-          }
+      } else {
+        await getuserdata(uid: user.uid);
+      }
       return right(userentite);
-
-      
-
     } catch (e) {
-     if (user != null) {
+      if (user != null) {
         await user.delete();
-      } 
-
-
+      }
 
       log("exception in Signinuserwithanemailandpassword : ${e.toString()} ");
       return left(
@@ -101,20 +101,22 @@ class AuthRepoImplementions implements AuthRepo {
 
   @override
   Future<Either<failer, Userentitie>> signInWithFacebook() async {
-    User ?user;
+    User? user;
     try {
-       user = await AuthService().signInWithFacebook();
-        var userentite=UserModel.fromFirebaseUser(user);
+      user = await AuthService().signInWithFacebook();
+      var userentite = UserModel.fromFirebaseUser(user);
+      await adduserToFirestore(user: userentite);
+      var isexsite = await databaseService.checkifdocumentexit(
+        path: BackendEndpoint.getUsersData,
+        documentid: user.uid,
+      );
+      if (!isexsite) {
         await adduserToFirestore(user: userentite);
-        var isexsite=await databaseService.checkifdocumentexit(path: BackendEndpoint.getUsersData, documentid: user.uid);
-        if(!isexsite){
-          await adduserToFirestore(user: userentite);
-        }
-          else{
-            await getuserdata(uid: user.uid);
-          }
+      } else {
+        await getuserdata(uid: user.uid);
+      }
 
-      return right( userentite);
+      return right(userentite);
     } catch (e) {
       log("exception in Signinuserwithanemailandpassword : ${e.toString()} ");
       return left(
@@ -127,21 +129,24 @@ class AuthRepoImplementions implements AuthRepo {
   Future adduserToFirestore({required Userentitie user}) async {
     await databaseService.AddData(
       path: BackendEndpoint.addUserData,
-      data: user.toMap(), documentid: user.udi,
+      data: UserModel.fromentite(user).toMap(),
+      documentid: user.udi,
     );
   }
-  
+
   @override
-  Future<Userentitie> getuserdata({ required String uid}) async{
-   
-   var user= await databaseService.getuserdata(path: BackendEndpoint.getUsersData, uid: uid);
+  Future<Userentitie> getuserdata({required String uid}) async {
+    var user = await databaseService.getuserdata(
+      path: BackendEndpoint.getUsersData,
+      uid: uid,
+    );
 
+    return user;
+  }
 
-   return user;
-
-
-
-
-
+  @override
+  Future<void> saveuser({required Userentitie user}) async {
+    var Jsondata = jsonEncode(UserModel.fromentite(user).toMap());
+    await CacheNetwork.insertToCacheString(key:"user_data" , value: Jsondata);
   }
 }

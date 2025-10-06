@@ -37,6 +37,12 @@ class AuthService {
     }
   }
 
+  bool Userloggedin(){
+    final user=FirebaseAuth.instance.currentUser;
+    return user!=null;
+
+  }
+
   Future<User> signinuserwithanemailandpassword({
     required String email,
     required String password,
@@ -115,4 +121,11 @@ Future<void>deleteuser()async{
     throw CustomeException(massage: "Unexpected error: $e"); 
   }
 }
+
+
+
+
+
+
+
 }

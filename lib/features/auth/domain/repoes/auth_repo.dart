@@ -1,5 +1,3 @@
-
-
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hup_store/core/errors/failer.dart';
 import 'package:fruit_hup_store/features/auth/domain/entities/user%20_entitie.dart';
@@ -12,4 +10,6 @@ Future<Either<failer,Userentitie>>signInWithGoogle();
 Future<Either<failer,Userentitie>>signInWithFacebook();
 Future<void> adduserToFirestore({required Userentitie user});
 Future<Userentitie> getuserdata({ required String uid});
+Future<void>saveuser({required Userentitie user});
+
 }
