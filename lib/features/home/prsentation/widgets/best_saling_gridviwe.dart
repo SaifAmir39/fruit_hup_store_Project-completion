@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hup_store/features/home/prsentation/widgets/product_itam.dart';
-import 'package:fruit_hup_store/features/products/presentation/views/products_viwe.dart';
+import 'package:fruit_hup_store/features/products%20detailes/presentation/views/products_viwe.dart';
 
 class BestSalingGridviwe extends StatelessWidget {
   @override

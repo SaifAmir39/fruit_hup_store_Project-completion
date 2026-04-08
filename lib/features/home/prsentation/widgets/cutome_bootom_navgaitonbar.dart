@@ -1,23 +1,20 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
 import 'package:fruit_hup_store/features/home/domain/entites/Bootom_Navgationbar_entites.dart';
 
-class CustomeBootomNavgaitonbar extends StatefulWidget {
- 
-const  CustomeBootomNavgaitonbar({
+class CustomeBootomNavgaitonbar extends StatelessWidget {
+ final int currentIndex;
+  final Function(int) onTap;
+   CustomeBootomNavgaitonbar({
     Key? key,
-    
+    required this.currentIndex,
+    required this.onTap,
   }) : super(key: key);
-  @override
-  State<CustomeBootomNavgaitonbar> createState() =>
-      _CustomeBootomNavgaitonbarState();
-}
 
-class _CustomeBootomNavgaitonbarState extends State<CustomeBootomNavgaitonbar> {
-   int indexslected = 0;
+   
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,15 +44,11 @@ class _CustomeBootomNavgaitonbarState extends State<CustomeBootomNavgaitonbar> {
           var enetie = e.value;
 
           return Expanded(
-            flex: index == indexslected ?3 :2,
+            flex: index == currentIndex ?3 :2,
             child: GestureDetector(
-              onTap: (){
-                setState(() {
-                  indexslected=index;
-                });
-              },
+              onTap: () => onTap(index),
               child: BootomNavgaitonbaritem(
-                isslected: indexslected == index,
+                isslected: currentIndex == index,
                 bootomNavgationbarEntites: enetie,
               ),
             ),

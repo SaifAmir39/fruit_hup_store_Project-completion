@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruit_hup_store/core/utils/Custome%20Bottun.dart';
-import 'package:fruit_hup_store/features/products/presentation/widgets/descations_product.dart';
+import 'package:fruit_hup_store/features/products%20detailes/presentation/widgets/descations_product.dart';
 
 class ProductsViweBody extends StatelessWidget {
 

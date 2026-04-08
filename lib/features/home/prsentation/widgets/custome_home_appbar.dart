@@ -5,6 +5,7 @@ import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
 import 'package:fruit_hup_store/core/utils/helper_functions/get%20user.dart';
 
 class CustomeHomeAppbar extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return ListTile(

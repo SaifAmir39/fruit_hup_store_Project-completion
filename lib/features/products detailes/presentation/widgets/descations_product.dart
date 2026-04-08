@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DescriptionsProduct extends StatelessWidget {
- String title;
- String subtitle;
- String image;
- bool isreviwe;
+final String title;
+final String subtitle;
+final String image;
+final bool isreviwe;
   DescriptionsProduct({required this.title, required this.subtitle, required this.image,required this.isreviwe} );
 
   @override
