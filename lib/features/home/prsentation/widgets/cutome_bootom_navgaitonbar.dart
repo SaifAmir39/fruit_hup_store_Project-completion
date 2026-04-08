@@ -1,16 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
 import 'package:fruit_hup_store/features/home/domain/entites/Bootom_Navgationbar_entites.dart';
 
 class CustomeBootomNavgaitonbar extends StatefulWidget {
+ 
+const  CustomeBootomNavgaitonbar({
+    Key? key,
+    
+  }) : super(key: key);
   @override
   State<CustomeBootomNavgaitonbar> createState() =>
       _CustomeBootomNavgaitonbarState();
 }
 
 class _CustomeBootomNavgaitonbarState extends State<CustomeBootomNavgaitonbar> {
-  int indexslected = 0;
+   int indexslected = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -94,7 +101,7 @@ class ActiveItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 4),
+      duration: Duration(milliseconds: 2),
       padding: EdgeInsets.only(right: 16,left: 5),
       width: 81,
       height: 30,
@@ -107,7 +114,7 @@ class ActiveItem extends StatelessWidget {
         children: [
        
           AnimatedContainer(
-           duration: Duration(milliseconds: 4),
+           duration: Duration(milliseconds: 2),
             width: 30,
             height: 30,
             decoration: ShapeDecoration(

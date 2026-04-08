@@ -23,7 +23,7 @@ class PageviweIteam extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: MediaQuery.sizeOf(context).height * 0.5,
+          height: MediaQuery.sizeOf(context).height * 0.4,
           width: double.infinity,
           child: Stack(
             children: [
@@ -51,11 +51,20 @@ class PageviweIteam extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 64),
-        SizedBox(child: text),
-        SizedBox(height: 24),
 
-        SizedBox(child: Text(subtitle,style:TextStyles.semiBold13)),
+        Expanded(
+          child: Column(
+            children: [
+                 SizedBox(height: 64),
+                  SizedBox(child: text),
+                  SizedBox(height: 24),
+          
+          
+                  Text(subtitle,style:TextStyles.semiBold13)
+            ],
+          ),
+        )
+      ,
       ],
     );
 

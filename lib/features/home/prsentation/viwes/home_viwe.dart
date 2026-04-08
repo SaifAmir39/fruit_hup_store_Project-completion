@@ -4,7 +4,8 @@ import 'package:fruit_hup_store/features/home/prsentation/widgets/cutome_bootom_
 import 'package:fruit_hup_store/features/home/prsentation/widgets/home_viwe_body.dart';
 
 class HomeViwe extends StatelessWidget {
- static const String routeName = 'Home viwe';
+   static const String routeName = 'Home viwe';
+
    @override
   Widget build(BuildContext context) {
   return Scaffold(

@@ -44,6 +44,13 @@ class FirebaseFirestoresevice implements DatabaseService {
     
   }
   
+  @override
+  Future<List<Map<String, dynamic>>> getalldata({required String path})async {
+  var data=await firestore.collection(path).get();
+  return data.docs.map((e) => e.data()).toList();
+     
+  }
+  
  
   
 }

@@ -26,8 +26,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       case BestSellingView.routeName:
 
       return MaterialPageRoute(builder: (context)=>BestSellingView());
-
-      
+        
+       
    default:
    return MaterialPageRoute(builder: (context)=>  Scaffold());
   }
