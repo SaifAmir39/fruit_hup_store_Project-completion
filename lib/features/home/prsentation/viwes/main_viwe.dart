@@ -18,7 +18,7 @@ class _MainviweState extends State<Mainviwe> {
   final  List<Widget> pages= [
     SafeArea(child: HomeViwe()),
    ProductesViwe(),
-  CartViwe(),  
+  CartViwe(),
     Container(
       color: Colors.blue,
     ),
