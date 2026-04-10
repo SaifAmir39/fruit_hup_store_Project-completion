@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:fruit_hup_store/core/utils/product/domain/entities/review_entity.dart';
 
@@ -7,7 +6,7 @@ class Productentity {
   String name;
   String price;
   String description;
-  File image;
+  String image;
   String code;
   bool isFeatured;
    String? imageURL;

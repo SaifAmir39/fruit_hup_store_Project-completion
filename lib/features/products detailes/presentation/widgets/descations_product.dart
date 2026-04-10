@@ -38,7 +38,7 @@ final bool isreviwe;
             Row(
               children: [
         Text(
-  "$title",
+  "${title}",
   textAlign: TextAlign.right,
   style: TextStyle(
     color: const Color(0xFF23AA49),

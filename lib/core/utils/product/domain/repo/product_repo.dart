@@ -6,4 +6,5 @@ abstract class ProductRepo {
  
  Future<Either<failer,List<Productentity>>> getAllProducts();
  Future<Either<failer,List<Productentity>>> getProductsBustsalleing();
+
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fruit_hup_store/core/utils/app_colors.dart';
 
 class CustomRangeSlider extends StatefulWidget {
   @override

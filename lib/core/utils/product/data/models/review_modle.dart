@@ -24,6 +24,15 @@ class ReviewModle  {
       comment: reviewEntity.comment,
     );
   }
+ ReviewEntity toEntity() {
+  return ReviewEntity(
+    image: image,
+    name: name,
+    review: review,
+    date: date,
+    comment: comment,
+  );
+}
   factory ReviewModle.fromjson(Map<String, dynamic> json) {
     return ReviewModle(
       image: json['image'] ,

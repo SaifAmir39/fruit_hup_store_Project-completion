@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fruit_hup_store/core/utils/custome_search%20_textfailed.dart';
 import 'package:fruit_hup_store/features/home/prsentation/widgets/Best_saling_header.dart';
-import 'package:fruit_hup_store/features/home/prsentation/widgets/best_saling_gridviwe.dart';
 import 'package:fruit_hup_store/features/products/presentaions/views/widgets/bootom_sheet.dart';
 import 'package:fruit_hup_store/features/products/presentaions/views/widgets/list_of_catgroy.dart';
 
@@ -90,7 +89,7 @@ class ProductesViweBody extends StatelessWidget {
               height: 8,
             ),
           ),
-           BestSalingGridviwe(),
+          //  BestSalingGridviwe(),
           
       ],
    );

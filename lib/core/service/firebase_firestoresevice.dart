@@ -51,6 +51,52 @@ class FirebaseFirestoresevice implements DatabaseService {
      
   }
   
+  @override
+  Future<Map<String, dynamic>> getdata({required String path, required String documentid})async {
+    var data= await firestore.collection(path).doc(documentid).get(); 
+    return data.data() as Map<String,dynamic>;
+    
+  }
+  
+ @override
+Future<List<Map<String, dynamic>>> getspecificdata({
+  required String path,
+
+  Map<String, dynamic>? filters,
+  String? orderBy,
+  bool descending = false,
+  int? limit,
+  DocumentSnapshot? startAfter,
+}) async {
+  Query collection = firestore.collection(path);
+
+  /// 🔹 Filters (where)
+  if (filters != null) {
+    filters.forEach((key, value) {
+      collection = collection.where(key, isEqualTo: value);
+    });
+  }
+
+  /// 🔹 Sorting
+  if (orderBy != null) {
+    collection = collection.orderBy(orderBy, descending: descending);
+  }
+
+  /// 🔹 Pagination
+  if (startAfter != null) {
+    collection = collection.startAfterDocument(startAfter);
+  }
+
+  /// 🔹 Limit
+  if (limit != null) {
+    collection = collection.limit(limit);
+  }
+
+  var data = await collection.get();
+
+  return data.docs.map((e) => e.data() as Map<String, dynamic>).toList();
+}
+  
  
   
 }

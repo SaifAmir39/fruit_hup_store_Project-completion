@@ -1,48 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:fruit_hup_store/features/cart/presentation/views/cart_viwe.dart';
-import 'package:fruit_hup_store/features/home/prsentation/widgets/cutome_bootom_navgaitonbar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hup_store/core/service/get_it_service.dart';
+import 'package:fruit_hup_store/core/utils/product/domain/repo/product_repo.dart';
+import 'package:fruit_hup_store/features/home/prsentation/manger/bloc/home_bloc.dart';
 import 'package:fruit_hup_store/features/home/prsentation/widgets/home_viwe_body.dart';
-import 'package:fruit_hup_store/features/products/presentaions/views/productes_viwe.dart';
 
-class HomeViwe extends StatefulWidget {
-   static const String routeName = 'Home viwe';
-
+class HomeViwe extends StatelessWidget {
   @override
-  State<HomeViwe> createState() => _HomeViweState();
-}
-
-class _HomeViweState extends State<HomeViwe> {
-  int currentIndex=0;
-
-  final  List<Widget> pages= [
-    SafeArea(child: HomeViweBody()),
-   ProductesViwe(),
-  CartViwe(),  
-    Container(
-      color: Colors.blue,
-    ),
-  ];
-
-   @override
   Widget build(BuildContext context) {
-  return Scaffold(
-   bottomNavigationBar:CustomeBootomNavgaitonbar(
-    currentIndex: currentIndex,
-    onTap: (index) {
-      setState(() {
-        currentIndex = index;
-      });
-    },
-   ),
-  body: pages[currentIndex],
-   //
-  
-  
-  // SafeArea(child: HomeViweBody()),
-  );
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
 
-    
-
+      child: BlocProvider(
+        create: (context) => HomeBloc(productRepo: getIt.get<ProductRepo>()),
+        child: HomeViweBody(),
+      ),
+    );
   }
 }

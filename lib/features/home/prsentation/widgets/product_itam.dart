@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:fruit_hup_store/core/utils/app_images.dart';
 import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
+import 'package:fruit_hup_store/core/utils/product/domain/entities/product_entities.dart';
 
 class Productitem extends StatefulWidget {
  final void Function() onTap;
-  const Productitem({super.key, required this.onTap});
+ final Productentity product;
+  const Productitem({super.key, required this.onTap, required this.product});
 
   @override
   State<Productitem> createState() => _ProductitemState();
@@ -50,11 +50,18 @@ class _ProductitemState extends State<Productitem> {
                    Flexible(
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
-                      child: SvgPicture.asset(Assets.imagesPageViewItem2Image))),
+                      child: Image.network(
+                        widget.product.image,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset("assets/images/watermelon_test.png");
+                        },
+                      ),
+                    ),
+                      ),
                   
                   ListTile(
                     title: Text(
-                      "بطيخ ",
+                      "${widget.product.name}",
                       style: TextStyles.semiBold16,
                       textAlign: TextAlign.right,
                     ),
@@ -63,7 +70,7 @@ class _ProductitemState extends State<Productitem> {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: '20جنية ',
+                            text: '${widget.product.price} جنية ',
                             style: TextStyles.bold13.copyWith(
                               color: const Color(0xFFF4A91F),
                             ),

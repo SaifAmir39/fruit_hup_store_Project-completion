@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fruit_hup_store/core/utils/Custome%20Bottun.dart';
+import 'package:fruit_hup_store/core/utils/product/domain/entities/product_entities.dart';
 import 'package:fruit_hup_store/features/products%20detailes/presentation/widgets/descations_product.dart';
 
 class ProductsViweBody extends StatelessWidget {
-
+ final Productentity product;
+  ProductsViweBody({required this.product});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,9 +19,13 @@ class ProductsViweBody extends StatelessWidget {
             width: double.infinity,
             child:
                     Center(
-                  child: Image.asset(
+                  child: Image.network(
                     fit: BoxFit.fitWidth,
-                    "assets/images/watermelon_test.png"),
+                    product.image,
+                      errorBuilder: (context, error, stackTrace) {
+                          return Image.asset("assets/images/watermelon_test.png");
+                        },
+                    ),
                 ),
              
           ),
@@ -34,7 +40,7 @@ class ProductsViweBody extends StatelessWidget {
           spacing: 4,
           children: [
             Text(
-              'بطيخ',
+              product.name,
               textAlign: TextAlign.right,
               style: TextStyle(
                 color: const Color(0xFF0C0D0D) /* Grayscale-950 */,
@@ -49,7 +55,7 @@ class ProductsViweBody extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: '20جنية ',
+                      text: '${product.price} جنية ',
                       style: TextStyle(
                         color: const Color(0xFFF4A91F) /* Orange-500 */,
                         fontSize: 13,
@@ -224,7 +230,7 @@ class ProductsViweBody extends StatelessWidget {
               ),
             ),
             TextSpan(
-              text: ' ولثمرته لُب حلو المذاق وقابل للأكل، وبحسب علم النبات فهي تعتبر ثمار لبيّة، تستعمل لفظة البطيخ للإشارة إلى النبات نفسه أو إلى الثمرة تحديداً',
+              text: product.description,
               style: TextStyle(
                 color: const Color(0xFF969899),
                 fontSize: 13,
@@ -248,10 +254,10 @@ class ProductsViweBody extends StatelessWidget {
         mainAxisSpacing: 8,
         childAspectRatio: 163/80,
              ), children: [
-              DescriptionsProduct(title: 'عام', subtitle: 'الصلاحيه', image: 'assets/images/Experation.svg', isreviwe: false,),
-              DescriptionsProduct(title: '100%', subtitle: 'اوجانيك', image: 'assets/images/Orginc.svg', isreviwe: false,),
+              DescriptionsProduct(title: "${product.expirationsMountes} شهر", subtitle: 'الصلاحيه', image: 'assets/images/Experation.svg', isreviwe: false,),
+              DescriptionsProduct(title: '100%', subtitle:product.isOrganic ? 'محلول' : 'اوجانيك', image: 'assets/images/Orginc.svg', isreviwe: false,),
               DescriptionsProduct(title: '4.8 ', subtitle: 'Reviews', image: "assets/images/Rateing.svg", isreviwe: true,),
-              DescriptionsProduct(title: '80 كالوري', subtitle: '100 جرام', image: "assets/images/cailroes.svg", isreviwe: false,),
+              DescriptionsProduct(title: '${product.numberofcaliores}', subtitle: '${product.unitaMount} جرام', image: "assets/images/cailroes.svg", isreviwe: false,),
              ],),
            SizedBox(height: 24,),
            SafeArea(
