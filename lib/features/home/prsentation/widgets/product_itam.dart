@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
 import 'package:fruit_hup_store/core/utils/product/domain/entities/product_entities.dart';
+import 'package:fruit_hup_store/features/cart/presentation/manger/cart_cubit.dart';
 
 class Productitem extends StatefulWidget {
  final void Function() onTap;
@@ -94,7 +96,9 @@ class _ProductitemState extends State<Productitem> {
                     leading: CircleAvatar(
                       backgroundColor: Color(0xFF1B5E37),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          BlocProvider.of<CartCubit>(context).addtocart(widget.product);
+                        },
                         icon: Icon(Icons.add, color: Colors.white, size: 20),
                       ),
                     ),

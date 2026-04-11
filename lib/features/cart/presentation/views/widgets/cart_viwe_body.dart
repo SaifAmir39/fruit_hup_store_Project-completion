@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup_store/core/utils/Custome%20Bottun.dart';
-import 'package:fruit_hup_store/features/cart/presentation/views/widgets/cart_item.dart';
+import 'package:fruit_hup_store/features/cart/domain/entitis/cart_item_entitis.dart';
+import 'package:fruit_hup_store/features/cart/presentation/manger/cart_cubit.dart';
+import 'package:fruit_hup_store/features/cart/presentation/views/widgets/list_of_items.dart';
 
 class CartViweBody extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    List<CartItementity> cartItems =  BlocProvider.of<CartCubit>(context).cartEntiti.cartItems;
     return
-     Column(
+                cartItems.isNotEmpty?  Column(
       children: [
         SizedBox(height: 16,),
-      Container(
+   cartItems.isNotEmpty?   Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 91, vertical: 10),
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: const Color(0xFFEBF9F1) /* Green1-50 */,
+        color: const Color(0xFFEBF9F1),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -25,9 +29,9 @@ class CartViweBody extends StatelessWidget {
         spacing: 8,
         children: [
     Text(
-      'لديك 3 منتجات في سله التسوق',
+      'لديك ${cartItems.length} منتجات في سله التسوق',
       style: TextStyle(
-        color: const Color(0xFF1B5E37) /* Green1-500 */,
+        color: const Color(0xFF1B5E37), 
         fontSize: 13,
         fontFamily: 'Cairo',
         fontWeight: FontWeight.w400,
@@ -36,20 +40,10 @@ class CartViweBody extends StatelessWidget {
     ),
         ],
       ),
-    ),
+    ): SizedBox(),
     SizedBox(height: 24,),
     Expanded(
-      child: ListView.builder(
-        
-        itemBuilder: (context, index) {
-        
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CartItem(),
-        );
-      },
-      itemCount: 10,
-      ),
+      child: ListOfItems(),
     ),
 
     Padding(
@@ -60,6 +54,24 @@ class CartViweBody extends StatelessWidget {
     SizedBox(height: 16,),
     
              
+      ],
+    ):Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      
+      children: [
+       Center(child: Icon(Icons.shopping_cart_outlined, size: 64, color: Color(0xFF969899),)),
+        SizedBox(height: 16,),
+        Center(
+          child: Text(
+            "سلة التسوق فارغة",
+            style: TextStyle(
+              color: const Color(0xFF969899),
+              fontSize: 16,
+              fontFamily: 'Cairo',
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
       ],
     );
   }

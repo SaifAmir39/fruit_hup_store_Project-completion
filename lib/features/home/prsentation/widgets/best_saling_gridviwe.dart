@@ -23,7 +23,9 @@ final  List<Productentity> products;
         
         return Productitem(onTap: () { 
            
-          Navigator.push(context, MaterialPageRoute(builder: (context) => ProductsViwe(product: products[index],)));
+          Navigator.push(
+            context, MaterialPageRoute(
+              builder: (context) => ProductsViwe(product: products[index],)));
          }, product: products[index],);
       },
     );

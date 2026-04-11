@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruit_hup_store/features/cart/domain/entitis/cart_item_entitis.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key});
+  final CartItementity cartItementity;
+  
+   CartItem({super.key, required this.cartItementity});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +22,9 @@ class CartItem extends StatelessWidget {
               color: const Color(0xFFF3F5F7),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Image.asset(
-              "assets/images/watermelon_test.png",
+            child: Image.network(
+              cartItementity.productentity.image,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
               fit: BoxFit.cover,
             ),
           ),
@@ -36,8 +40,8 @@ class CartItem extends StatelessWidget {
                 /// 🟢 Title + Trash
                 Row(
                   children: [
-                    const Text(
-                      'بطيخ',
+                     Text(
+                   cartItementity.productentity.name,
                       style: TextStyle(
                         color: Color(0xFF05161B),
                         fontSize: 13,
@@ -57,8 +61,8 @@ class CartItem extends StatelessWidget {
                 const SizedBox(height: 6),
 
                 /// 🟢 Weight
-                const Text(
-                  '3 كم',
+                 Text(
+                  "${cartItementity.caluclatetotalwieght()} كجم",
                   style: TextStyle(
                     color: Color(0xFFF4A91F),
                     fontSize: 13,
@@ -72,8 +76,8 @@ class CartItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      '60 جنيه',
+                     Text(
+                     "${cartItementity.caluclatetotalpriceitem() }" + " جنيه",
                       style: TextStyle(
                         color: Color(0xFFF4A91F),
                         fontSize: 16,
@@ -111,8 +115,8 @@ class CartItem extends StatelessWidget {
 
                           const SizedBox(width: 6),
 
-                          const Text(
-                            '3',
+                          Text(
+                            '${cartItementity.quantity}',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -121,7 +125,7 @@ class CartItem extends StatelessWidget {
 
                           const SizedBox(width: 6),
 
-                          /// ➕
+                          
                             Container(
       width: 24,
       height: 24,
