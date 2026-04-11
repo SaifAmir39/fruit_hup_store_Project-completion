@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruit_hup_store/features/cart/domain/entitis/cart_item_entitis.dart';
+import 'package:fruit_hup_store/features/cart/presentation/manger/cart_cubit.dart';
 
 class CartItem extends StatelessWidget {
   final CartItementity cartItementity;
@@ -50,10 +52,15 @@ class CartItem extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    SvgPicture.asset(
-                      "assets/images/trash.svg",
-                      width: 20,
-                      height: 20,
+                    GestureDetector(
+                      onTap: () {
+                        BlocProvider.of<CartCubit>(context).removefromcart(cartItementity.productentity);
+                      },
+                      child: SvgPicture.asset(
+                        "assets/images/trash.svg",
+                        width: 20,
+                        height: 20,
+                      ),
                     ),
                   ],
                 ),
@@ -99,19 +106,24 @@ class CartItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           /// ➖
-                            Container(
-      width: 24,
-      height: 24,
-      decoration: BoxDecoration(
-        color:  Colors.grey[300],
-        shape: BoxShape.circle,
-      ),
-      child: Icon(
-        Icons.remove,
-        size: 16,
-        color: Colors.black,
-      ),
-    ),
+                            GestureDetector(
+                              onTap: () {
+                                BlocProvider.of<CartCubit>(context).addtocart(cartItementity.productentity);
+                              },
+                              child: Container(
+                                    width: 24,
+                                    height: 24,
+                                    decoration: BoxDecoration(
+                                      color:  Colors.grey[300],
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      Icons.remove,
+                                      size: 16,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                            ),
 
                           const SizedBox(width: 6),
 
@@ -126,19 +138,24 @@ class CartItem extends StatelessWidget {
                           const SizedBox(width: 6),
 
                           
-                            Container(
-      width: 24,
-      height: 24,
-      decoration: BoxDecoration(
-        color: const Color(0xFF1B5E37),
-        shape: BoxShape.circle,
-      ),
-      child: Icon(
-        Icons.add,
-        size: 16,
-        color: Colors.white,
-      ),
-    ),
+                            GestureDetector(
+                              onTap: () {
+                                BlocProvider.of<CartCubit>(context).addtocart(cartItementity.productentity);
+                              },
+                              child: Container(
+                                    width: 24,
+                                    height: 24,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFF1B5E37),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      Icons.add,
+                                      size: 16,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                            ),
 
                         ],
                       ),

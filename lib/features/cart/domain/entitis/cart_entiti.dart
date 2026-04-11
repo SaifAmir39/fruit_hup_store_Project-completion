@@ -10,20 +10,25 @@ class CartEntiti {
     cartItems.add(cartItementity);
   }
 
- removeitemfromcart(CartItementity cartItementity) {
+  removeitemfromcart(CartItementity cartItementity) {
     cartItems.remove(cartItementity);
   }
-   
-   
 
-  bool isitemincart (Productentity productentity){
+  CartItementity getitem(Productentity productentity) {
     for (var item in cartItems) {
-      if(item.productentity == productentity){
+      if (item.productentity.code == productentity.code) {
+        return item;
+      }
+    }
+    return CartItementity(productentity: productentity, quantity: 1);
+  }
+
+  bool isitemincart(Productentity productentity) {
+    for (var item in cartItems) {
+      if (item.productentity.code == productentity.code) {
         return true;
       }
     }
     return false;
   }
-
-  
 }
