@@ -4,16 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruit_hup_store/features/cart/domain/entitis/cart_item_entitis.dart';
 import 'package:fruit_hup_store/features/cart/presentation/manger/cart_cubit.dart';
 
-class CartItem extends StatefulWidget {
+class CartItem extends StatelessWidget {
   final CartItementity cartItementity;
   
    CartItem({super.key, required this.cartItementity});
 
-  @override
-  State<CartItem> createState() => _CartItemState();
-}
-
-class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +25,7 @@ class _CartItemState extends State<CartItem> {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Image.network(
-              widget.cartItementity.productentity.image,
+              cartItementity.productentity.image,
               errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
               fit: BoxFit.cover,
             ),
@@ -48,7 +43,7 @@ class _CartItemState extends State<CartItem> {
                 Row(
                   children: [
                      Text(
-                   widget.cartItementity.productentity.name,
+                   cartItementity.productentity.name,
                       style: TextStyle(
                         color: Color(0xFF05161B),
                         fontSize: 13,
@@ -59,10 +54,8 @@ class _CartItemState extends State<CartItem> {
                     const Spacer(),
                     GestureDetector(
                       onTap: () {
-                        BlocProvider.of<CartCubit>(context).removefromcart(widget.cartItementity.productentity);
-                     setState(() {
-                       
-                     });
+                        BlocProvider.of<CartCubit>(context).removefromcart(cartItementity.productentity);
+                  
                      
                       },
                       child: SvgPicture.asset(
@@ -78,7 +71,7 @@ class _CartItemState extends State<CartItem> {
 
                 /// 🟢 Weight
                  Text(
-                  "${widget.cartItementity.caluclatetotalwieght()} كجم",
+                  "${cartItementity.caluclatetotalwieght()} كجم",
                   style: TextStyle(
                     color: Color(0xFFF4A91F),
                     fontSize: 13,
@@ -93,7 +86,7 @@ class _CartItemState extends State<CartItem> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                      Text(
-                     "${widget.cartItementity.caluclatetotalpriceitem() }" + " جنيه",
+                     "${cartItementity.caluclatetotalpriceitem() }" + " جنيه",
                       style: TextStyle(
                         color: Color(0xFFF4A91F),
                         fontSize: 16,
@@ -117,18 +110,14 @@ class _CartItemState extends State<CartItem> {
                           /// ➖
                             GestureDetector(
                               onTap: () {
-                                if(widget.cartItementity.quantity > 0){
-                                BlocProvider.of<CartCubit>(context).decreasetocart(widget.cartItementity.productentity);
-                               setState(() {
-                                 
-                               });
+                                if(cartItementity.quantity > 0){
+                                BlocProvider.of<CartCubit>(context).decreasetocart(cartItementity.productentity);
+                             
                                
                                 }
-                                if(widget.cartItementity.quantity == 0){
-                                  BlocProvider.of<CartCubit>(context).removefromcart(widget.cartItementity.productentity);
-                                  setState(() {
-                                    
-                                  });
+                                if(cartItementity.quantity == 0){
+                                  BlocProvider.of<CartCubit>(context).removefromcart(cartItementity.productentity);
+                                
                                 }
                                 
                               },
@@ -150,7 +139,7 @@ class _CartItemState extends State<CartItem> {
                           const SizedBox(width: 6),
 
                           Text(
-                            '${widget.cartItementity.quantity}',
+                            '${cartItementity.quantity}',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -162,10 +151,8 @@ class _CartItemState extends State<CartItem> {
                           
                             GestureDetector(
                               onTap: () {
-                                BlocProvider.of<CartCubit>(context).addtocart(widget.cartItementity.productentity);
-                                setState(() {
-                                  
-                                });
+                                BlocProvider.of<CartCubit>(context).addtocart(cartItementity.productentity);
+                             
                               },
                               child: Container(
                                     width: 24,
