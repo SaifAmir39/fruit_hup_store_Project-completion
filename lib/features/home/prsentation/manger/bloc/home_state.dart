@@ -13,6 +13,7 @@ class HomeProductsBestSaleingSuccessState extends HomeState{
   final List<Productentity> products;
   HomeProductsBestSaleingSuccessState({required this.products});
 }
+
 class HomeErrorProductsState extends HomeState{
   final String errormassge;
   HomeErrorProductsState( {required this.errormassge});

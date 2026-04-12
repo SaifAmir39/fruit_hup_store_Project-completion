@@ -10,9 +10,11 @@ class CartCubit extends Cubit<CartState> {
   CartEntiti cartEntiti=CartEntiti(cartItems: []);
   
 
+ 
   void addtocart(Productentity productentity){
   bool  istemincart = cartEntiti.isitemincart(productentity);
   var cartItementity=cartEntiti.getitem(productentity);
+  var getquantity=cartEntiti.getquantity(productentity);
   if(istemincart){
   cartItementity.incresquantity();
   }
@@ -26,8 +28,15 @@ else {
  decreasetocart(Productentity productentity){
   bool  istemincart = cartEntiti.isitemincart(productentity);
   var cartItementity=cartEntiti.getitem(productentity);
+  
+  
+  
   if(istemincart){
   cartItementity.decresquantity();
+  }
+  
+  if(cartItementity.quantity==0){
+    cartEntiti.removeitemfromcart(cartItementity);
   }
   
     emit(CartUpdate());

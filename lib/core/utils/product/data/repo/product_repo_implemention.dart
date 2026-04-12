@@ -49,5 +49,23 @@ catch(e){
   }
    
   }
+  
+  @override
+  Future<Either<failer, List<Productentity>>> getCategory()async {
+   try{
+    var data =await databaseService.getspecificdata(path: BackendEndpoint.getProducts,
+    filters: {
+      "isFeatured": true,
+    }
+    );
+    List<Productentity> products = data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
+  return Right(products);
+
+   }
+    catch(e){
+      print("CRASH ERROR GET CATEGORY:🤑🤑🤑🤑  $e");
+      return Left(serverfailererror(e.toString()));
+    }
+  }
 }
  

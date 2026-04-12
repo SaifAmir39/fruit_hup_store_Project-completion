@@ -8,7 +8,7 @@ import 'package:fruit_hup_store/features/products%20detailes/presentation/widget
 class ProductsViwe extends StatelessWidget {
   static const routeName = 'productsviwe';
  final  Productentity product;
-  ProductsViwe({required this.product});
+  ProductsViwe({required this.product, });
   @override
   Widget build(BuildContext context) {
     return Scaffold(

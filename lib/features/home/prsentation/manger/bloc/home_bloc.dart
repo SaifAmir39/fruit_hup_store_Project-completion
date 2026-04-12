@@ -28,6 +28,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         (products) => emit(HomeProductsBestSaleingSuccessState(products: products)),
       );
     });
+   
 
   }
 }

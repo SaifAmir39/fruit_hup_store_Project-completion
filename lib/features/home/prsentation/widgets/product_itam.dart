@@ -72,7 +72,7 @@ class _ProductitemState extends State<Productitem> {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: '${widget.product.price} جنية ',
+                            text: '${widget.product.price.round()} جنية ',
                             style: TextStyles.bold13.copyWith(
                               color: const Color(0xFFF4A91F),
                             ),

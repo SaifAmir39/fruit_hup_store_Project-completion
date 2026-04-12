@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hup_store/core/utils/app_colors.dart';
 import 'package:fruit_hup_store/core/utils/custome_search%20_textfailed.dart';
 import 'package:fruit_hup_store/features/home/prsentation/manger/bloc/home_bloc.dart';
 import 'package:fruit_hup_store/features/home/prsentation/widgets/Best_saling_header.dart';
@@ -49,7 +50,9 @@ class _HomeViweBodyState extends State<HomeViweBody> {
            if (state is HomeLoadingProductsState)
               SliverToBoxAdapter(
                 child: Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: AppColors.primaryColor,
+                  ),
                 ),
               ),
            

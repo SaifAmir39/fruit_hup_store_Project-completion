@@ -11,8 +11,11 @@ class CartViweBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<CartItementity> cartItems =  BlocProvider.of<CartCubit>(context).cartEntiti.cartItems;
-    return
-                cartItems.isNotEmpty?  Column(
+    return BlocBuilder<CartCubit, CartState>(
+      builder: (context, state) {
+       
+    
+           return     cartItems.isNotEmpty?  Column(
       children: [
         SizedBox(height: 16,),
    cartItems.isNotEmpty?   Container(
@@ -48,7 +51,7 @@ class CartViweBody extends StatelessWidget {
 
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Customebottun(onpressed: (){}, title: "الدفع  120جنيه"),
+      child: Customebottun(onpressed: (){}, title: "الدفع ${BlocProvider.of<CartCubit>(context).cartEntiti.calculatetotalprice().toStringAsFixed(2)} جنيه",),
     ),
 
     SizedBox(height: 16,),
@@ -73,6 +76,8 @@ class CartViweBody extends StatelessWidget {
           ),
         ),
       ],
+    );
+      },
     );
   }
 }

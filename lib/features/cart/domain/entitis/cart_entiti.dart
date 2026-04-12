@@ -6,6 +6,36 @@ class CartEntiti {
 
   CartEntiti({required this.cartItems});
 
+  
+     
+     getquantity(Productentity productentity) {
+    for (var item in cartItems) {
+      if (item.productentity.code == productentity.code) {
+        return item.quantity;
+      }
+    }
+    return 0;
+  }
+     
+     
+     
+     calculatetotalprice() {
+    double totalprice = 0;
+    for (var item in cartItems) {
+      totalprice += item.caluclatetotalpriceitem();
+    }
+    return totalprice;
+     }
+
+
+   calculatetotalwieght() {
+    double totalwieght = 0;
+    for (var item in cartItems) {
+      totalwieght += item.caluclatetotalwieght();
+    }
+    return totalwieght;
+  }
+
   additemtocart(CartItementity cartItementity) {
     cartItems.add(cartItementity);
   }

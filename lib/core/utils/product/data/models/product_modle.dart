@@ -4,7 +4,7 @@ import 'package:fruit_hup_store/core/utils/product/domain/entities/product_entit
 
 class ProductModel {
   String name;
-  String price;
+  double price;
   String description;
   String? image;
   String code;

@@ -4,11 +4,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruit_hup_store/features/cart/domain/entitis/cart_item_entitis.dart';
 import 'package:fruit_hup_store/features/cart/presentation/manger/cart_cubit.dart';
 
-class CartItem extends StatelessWidget {
+class CartItem extends StatefulWidget {
   final CartItementity cartItementity;
   
    CartItem({super.key, required this.cartItementity});
 
+  @override
+  State<CartItem> createState() => _CartItemState();
+}
+
+class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +30,7 @@ class CartItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Image.network(
-              cartItementity.productentity.image,
+              widget.cartItementity.productentity.image,
               errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
               fit: BoxFit.cover,
             ),
@@ -43,7 +48,7 @@ class CartItem extends StatelessWidget {
                 Row(
                   children: [
                      Text(
-                   cartItementity.productentity.name,
+                   widget.cartItementity.productentity.name,
                       style: TextStyle(
                         color: Color(0xFF05161B),
                         fontSize: 13,
@@ -54,7 +59,11 @@ class CartItem extends StatelessWidget {
                     const Spacer(),
                     GestureDetector(
                       onTap: () {
-                        BlocProvider.of<CartCubit>(context).removefromcart(cartItementity.productentity);
+                        BlocProvider.of<CartCubit>(context).removefromcart(widget.cartItementity.productentity);
+                     setState(() {
+                       
+                     });
+                     
                       },
                       child: SvgPicture.asset(
                         "assets/images/trash.svg",
@@ -69,7 +78,7 @@ class CartItem extends StatelessWidget {
 
                 /// 🟢 Weight
                  Text(
-                  "${cartItementity.caluclatetotalwieght()} كجم",
+                  "${widget.cartItementity.caluclatetotalwieght()} كجم",
                   style: TextStyle(
                     color: Color(0xFFF4A91F),
                     fontSize: 13,
@@ -84,7 +93,7 @@ class CartItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                      Text(
-                     "${cartItementity.caluclatetotalpriceitem() }" + " جنيه",
+                     "${widget.cartItementity.caluclatetotalpriceitem() }" + " جنيه",
                       style: TextStyle(
                         color: Color(0xFFF4A91F),
                         fontSize: 16,
@@ -108,7 +117,20 @@ class CartItem extends StatelessWidget {
                           /// ➖
                             GestureDetector(
                               onTap: () {
-                                BlocProvider.of<CartCubit>(context).addtocart(cartItementity.productentity);
+                                if(widget.cartItementity.quantity > 0){
+                                BlocProvider.of<CartCubit>(context).decreasetocart(widget.cartItementity.productentity);
+                               setState(() {
+                                 
+                               });
+                               
+                                }
+                                if(widget.cartItementity.quantity == 0){
+                                  BlocProvider.of<CartCubit>(context).removefromcart(widget.cartItementity.productentity);
+                                  setState(() {
+                                    
+                                  });
+                                }
+                                
                               },
                               child: Container(
                                     width: 24,
@@ -128,7 +150,7 @@ class CartItem extends StatelessWidget {
                           const SizedBox(width: 6),
 
                           Text(
-                            '${cartItementity.quantity}',
+                            '${widget.cartItementity.quantity}',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -140,7 +162,10 @@ class CartItem extends StatelessWidget {
                           
                             GestureDetector(
                               onTap: () {
-                                BlocProvider.of<CartCubit>(context).addtocart(cartItementity.productentity);
+                                BlocProvider.of<CartCubit>(context).addtocart(widget.cartItementity.productentity);
+                                setState(() {
+                                  
+                                });
                               },
                               child: Container(
                                     width: 24,
@@ -169,7 +194,4 @@ class CartItem extends StatelessWidget {
       ),
     );
   }
-
-  /// 🔥 Reusable Button
-  
-  }
+}
