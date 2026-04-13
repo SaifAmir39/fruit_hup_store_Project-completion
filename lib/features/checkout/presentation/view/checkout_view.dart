@@ -6,7 +6,7 @@ class CheckoutView extends StatelessWidget   {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: bulid_Appbar(title: "الشحن", context: context),
+     
       body: CheckoutViewBody(),
     );
   }
