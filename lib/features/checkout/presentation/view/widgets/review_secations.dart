@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hup_store/features/checkout/presentation/manger/order_cubit.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/pyment%20_way_iteam.dart';
 
 class ReviewSecations extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+ var   ordercunite =BlocProvider.of<OrderCubit>(context);
    return Column(
    crossAxisAlignment: CrossAxisAlignment.start,
    
@@ -35,7 +39,7 @@ class ReviewSecations extends StatelessWidget {
       Column(
 children: [
   Text(
-                          '150 جنيه',
+                          '${ordercunite.order.orderItems!.calculatetotalprice()} جنيه',
                           textAlign: TextAlign.right,
                           style: TextStyle(
                             color: const Color(0xFF0C0D0D) /* Grayscale-950 */,
@@ -59,7 +63,7 @@ children: [
                         ),
                         SizedBox(height: 8,),
                          Text(
-              '180 جنيه',
+              '${ordercunite.order.orderItems!.calculatetotalprice()+30} جنيه',
               textAlign: TextAlign.right,
               style: TextStyle(
                 color: const Color(0xFF0C0D0D) /* Grayscale-950 */,
@@ -287,7 +291,7 @@ Row(
         color: const Color(0xFF4E5556),),
 Spacer(),
           Text(
-  'شارع النيل، مبنى رقم ١٢٣',
+  '${ordercunite.order.addressEntiti!.address}',
   textAlign: TextAlign.right,
   style: TextStyle(
     color: const Color(0xFF4E5556) /* Grayscale-500 */,

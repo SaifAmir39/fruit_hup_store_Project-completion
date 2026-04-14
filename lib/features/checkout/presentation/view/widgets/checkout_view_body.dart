@@ -118,7 +118,13 @@ body:  Padding(
         duration: Duration(milliseconds: 500),
         curve: Curves.fastOutSlowIn,
       );
-    } else {
+    }  if(currentPage == 3){
+      BlocProvider.of<OrderCubit>(context).addorder(
+        
+      );
+      print("order added");
+    }
+    else {
       ScaffoldMessenger.of(context).showSnackBar(
   SnackBar(
     content: Text("اكمل البيانات الأول 😅"),

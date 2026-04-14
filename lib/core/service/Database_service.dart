@@ -4,8 +4,10 @@ import 'package:fruit_hup_store/features/auth/domain/entities/user%20_entitie.da
 abstract class DatabaseService {
 
 Future<void>AddData ( {required String path,required Map<String,dynamic>data,required String documentid});
-Future<Userentitie> getuserdata({required String path,required String uid});
 
+
+Future<void>addData ( {required String path,required Map<String,dynamic>data});
+Future<Userentitie> getuserdata({required String path,required String uid});
 Future<List<Map<String,dynamic>>>getalldata({required String path});
 Future<Map<String,dynamic>> getdata({required String path,required String documentid});
 Future<List<Map<String,dynamic>>> getspecificdata({

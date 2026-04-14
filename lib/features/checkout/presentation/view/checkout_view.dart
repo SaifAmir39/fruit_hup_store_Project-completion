@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hup_store/core/service/get_it_service.dart';
 import 'package:fruit_hup_store/features/cart/domain/entitis/cart_entiti.dart';
+import 'package:fruit_hup_store/features/checkout/domain/repo/order_repo.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/manger/order_cubit.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/checkout_view_body.dart';
 
@@ -11,7 +13,7 @@ class CheckoutView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => OrderCubit(),
+      create: (context) => OrderCubit(orderRepo: getIt.get<OrderRepo>())..getOrderitems(items: cartEntiti),
       child: Scaffold(body: CheckoutViewBody(cartEntiti: cartEntiti,)),
     );
   }

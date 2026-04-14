@@ -96,6 +96,12 @@ Future<List<Map<String, dynamic>>> getspecificdata({
 
   return data.docs.map((e) => e.data() as Map<String, dynamic>).toList();
 }
+
+  @override
+  Future<void> addData({required String path, required Map<String, dynamic> data})async {
+    await firestore.collection(path).add(data);
+    
+  }
   
  
   

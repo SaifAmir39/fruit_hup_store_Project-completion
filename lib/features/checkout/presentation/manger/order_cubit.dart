@@ -1,17 +1,22 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
+import 'package:fruit_hup_store/core/utils/helper_functions/get%20user.dart';
 import 'package:fruit_hup_store/features/cart/domain/entitis/cart_entiti.dart';
+import 'package:fruit_hup_store/features/checkout/data/repo/order_repo_implementiom.dart';
 import 'package:fruit_hup_store/features/checkout/domain/entitis/address_entiti.dart';
 import 'package:fruit_hup_store/features/checkout/domain/entitis/order_entiti.dart';
+import 'package:fruit_hup_store/features/checkout/domain/repo/order_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'order_state.dart';
 
 class OrderCubit extends Cubit<OrderState> {
 
+OrderRepo orderRepo; 
 
-
-  OrderCubit() : super(OrderInitial());
-  var order =OrderEntiti();
+  OrderCubit({required this.orderRepo}) : super(OrderInitial());
+  var order =OrderEntiti(uiID: getuserdata().udi, );
  
  getOrderitems({required CartEntiti items}){
   order.orderItems=items;
@@ -33,7 +38,12 @@ class OrderCubit extends Cubit<OrderState> {
   print("ADDRESS📊📊: ${address.name}");
   return address;
  }
-
-
+  addorder()async{
+    emit(AddorderLoedingstate());
+    var reslut=await orderRepo.createOrder(order: order);
+    reslut.fold((failer) => emit(AddorderfailerState(errmessage: failer.massage)), (r) => emit(AddordersucessState()));
+  } 
+   
+  
   
 }
