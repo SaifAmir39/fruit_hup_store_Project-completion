@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:fruit_hup_store/core/utils/helper_functions/Custome%20_Appbar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hup_store/features/cart/domain/entitis/cart_entiti.dart';
+import 'package:fruit_hup_store/features/checkout/presentation/manger/order_cubit.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/checkout_view_body.dart';
 
-class CheckoutView extends StatelessWidget   {
+class CheckoutView extends StatelessWidget {
+  final CartEntiti cartEntiti;
+
+  CheckoutView({Key? key, required this.cartEntiti}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-     
-      body: CheckoutViewBody(),
+    return BlocProvider(
+      create: (context) => OrderCubit(),
+      child: Scaffold(body: CheckoutViewBody(cartEntiti: cartEntiti,)),
     );
   }
 }

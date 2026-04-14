@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
 
 class InputAddresTextfailed extends StatelessWidget {
- 
+final TextEditingController controller ;
 final String hintText;
-InputAddresTextfailed({required this.hintText});
+InputAddresTextfailed({required this.hintText,required this.controller});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +21,14 @@ InputAddresTextfailed({required this.hintText});
               )
             ],
           ),
-      child: TextField(
+      child: TextFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter some text';
+          }
+          return null;
+        },
+        controller: controller,
        decoration: InputDecoration(
        
            filled: true,

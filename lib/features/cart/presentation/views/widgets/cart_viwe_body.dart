@@ -5,6 +5,7 @@ import 'package:fruit_hup_store/core/utils/Custome%20Bottun.dart';
 import 'package:fruit_hup_store/features/cart/domain/entitis/cart_item_entitis.dart';
 import 'package:fruit_hup_store/features/cart/presentation/manger/cart_cubit.dart';
 import 'package:fruit_hup_store/features/cart/presentation/views/widgets/list_of_items.dart';
+import 'package:fruit_hup_store/features/checkout/presentation/view/checkout_view.dart';
 
 class CartViweBody extends StatelessWidget {
   
@@ -51,7 +52,16 @@ class CartViweBody extends StatelessWidget {
 
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Customebottun(onpressed: (){}, title: "الدفع ${BlocProvider.of<CartCubit>(context).cartEntiti.calculatetotalprice().toStringAsFixed(2)} جنيه",),
+      child: Customebottun(onpressed: (){
+        Navigator.push(context, 
+        MaterialPageRoute(builder: (context){
+          return CheckoutView(
+            cartEntiti: BlocProvider.of<CartCubit>(context).cartEntiti,
+          );
+        } ),
+        
+        );
+      }, title: "الدفع ${BlocProvider.of<CartCubit>(context).cartEntiti.calculatetotalprice().toStringAsFixed(2)} جنيه",),
     ),
 
     SizedBox(height: 16,),

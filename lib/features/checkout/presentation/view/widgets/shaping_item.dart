@@ -6,7 +6,8 @@ class ShapingItem  extends StatefulWidget{
  bool iscardit=false;
  void Function() onTap;
  bool isselected=false;
-  ShapingItem({required this.iscardit, required this.onTap,required this.isselected});
+ double totleprice;
+  ShapingItem({required this.iscardit, required this.onTap,required this.isselected,required this.totleprice});
 
   @override
   State<ShapingItem> createState() => _ShapingItemState();
@@ -79,7 +80,7 @@ class _ShapingItemState extends State<ShapingItem> {
             ),
       
              Text(
-            widget.iscardit? " مجاني" :'40 جنيه',
+            widget.iscardit? "${widget.totleprice} +الشحن مجاني " :'${widget.totleprice}+ (مصاريف الشحن) 40 جنيه ',
               style: TextStyle(
                 color: Color(0xFF3A8B33),
                 fontSize: 13,

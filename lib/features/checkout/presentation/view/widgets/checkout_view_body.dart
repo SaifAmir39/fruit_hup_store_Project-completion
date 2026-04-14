@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup_store/core/utils/Custome%20Bottun.dart';
 import 'package:fruit_hup_store/core/utils/helper_functions/Custome%20_Appbar.dart';
+import 'package:fruit_hup_store/features/cart/domain/entitis/cart_entiti.dart';
+import 'package:fruit_hup_store/features/checkout/presentation/manger/order_cubit.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/Address_Section.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/active_Step.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/in_active_step.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/shaping_sections.dart';
 
 class CheckoutViewBody extends StatefulWidget {
+  final CartEntiti cartEntiti;
+  
+  const 
+  CheckoutViewBody({super.key, required this.cartEntiti});
   @override
   State<CheckoutViewBody> createState() => _CheckoutViewBodyState();
 }
 
 class _CheckoutViewBodyState extends State<CheckoutViewBody> {
 final PageController pageController =PageController();
+final GlobalKey<ShapingSectionsState> shapingKey = GlobalKey();
+final GlobalKey<AddressSectionState> addressKey = GlobalKey();
 int currentPage = 0;
-List<Widget> pages = [
-  ShapingSections(),
-  AddressSection(),
-  Container(color: Colors.blue,),
-  Container(color: Colors.yellow,),
-];
+
 @override
   void initState() {
     super.initState();
@@ -28,6 +32,7 @@ List<Widget> pages = [
         currentPage = pageController.page!.round();
       });
     });
+    BlocProvider.of<OrderCubit>(context).getOrderitems( items: widget.cartEntiti);
     
   }
  final List<String> steps = [
@@ -38,7 +43,12 @@ List<Widget> pages = [
   ];
 
   Widget build(BuildContext context) {
-
+List<Widget> pages = [
+  ShapingSections(key: shapingKey,),
+  AddressSection(key: addressKey,),
+  Container(color: Colors.blue,),
+  Container(color: Colors.yellow,),
+];
    
    return Scaffold(
     appBar: bulid_Appbar(title: steps[currentPage], context: context),
@@ -76,10 +86,29 @@ body:  Padding(
         
       }, itemCount: pages.length,),
      ),
-     Customebottun(onpressed: (){
+    Customebottun(
+  onpressed: () {
+    bool canGo = false;
 
-       pageController.nextPage(duration: Duration(milliseconds: 500), curve: Curves.fastOutSlowIn);
-     }, title: "التالي",),
+    if (currentPage == 0) {
+      canGo = shapingKey.currentState?.valdton() ?? false;
+    } else if (currentPage == 1) {
+      canGo = addressKey.currentState?.valdatio() ?? false;
+    } else {
+      canGo = true;
+    }
+
+    if (canGo) {
+      pageController.nextPage(
+        duration: Duration(milliseconds: 500),
+        curve: Curves.fastOutSlowIn,
+      );
+    } else {
+      print("فيه مشكلة ❌");
+    }
+  },
+  title: "التالي",
+),
      SizedBox(height: 32,),
       ],
      ),
