@@ -7,6 +7,8 @@ import 'package:fruit_hup_store/features/checkout/presentation/manger/order_cubi
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/Address_Section.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/active_Step.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/in_active_step.dart';
+import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/pymeant_seaction.dart';
+import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/review_secations.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/shaping_sections.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -41,13 +43,26 @@ int currentPage = 0;
   "الدفع",
   "المراجعة",
   ];
-
+String title(){
+  switch(currentPage){
+    case 0:
+      return "التالي";
+    case 1:
+      return "التالي";
+    case 2:
+      return "تأكيد & استمرار";
+    case 3:
+      return "تأكيد الطلب";
+    default:
+      return "الشحن";
+  }
+}
   Widget build(BuildContext context) {
 List<Widget> pages = [
   ShapingSections(key: shapingKey,),
   AddressSection(key: addressKey,),
-  Container(color: Colors.blue,),
-  Container(color: Colors.yellow,),
+  PymeantSeaction(),
+  ReviewSecations(),
 ];
    
    return Scaffold(
@@ -104,10 +119,15 @@ body:  Padding(
         curve: Curves.fastOutSlowIn,
       );
     } else {
-      print("فيه مشكلة ❌");
+      ScaffoldMessenger.of(context).showSnackBar(
+  SnackBar(
+    content: Text("اكمل البيانات الأول 😅"),
+    backgroundColor: Colors.red,
+  ),
+);
     }
   },
-  title: "التالي",
+  title: title(),
 ),
      SizedBox(height: 32,),
       ],

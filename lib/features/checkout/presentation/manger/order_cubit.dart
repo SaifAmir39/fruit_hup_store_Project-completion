@@ -30,7 +30,7 @@ class OrderCubit extends Cubit<OrderState> {
 
  getAddres({required AddressEntiti address}){
   order.addressEntiti=address;
-  print("ADDRESS📊📊: $address");
+  print("ADDRESS📊📊: ${address.name}");
   return address;
  }
 
