@@ -7,6 +7,7 @@ import 'package:uuid/uuid.dart';
 class OrderModel {
 String id;  
 String uid;
+String status;
 final double total;
 final ShaipingAddresModle address;
 
@@ -16,6 +17,7 @@ final int PaymentMethod;
 OrderModel({
   required this.id,
   required this.uid,
+  this.status = "pending",
   required this.total,
   required this.address,
   required this.products,
@@ -40,6 +42,7 @@ toJson() {
   return {
     "id": id,
     "uid": uid,
+    "status": status,
     "total": total,
     "address": address.tojson(),
     "products": products.map((e) => e.tojson()).toList(),
