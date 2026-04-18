@@ -15,12 +15,13 @@ class OrderRepoImplementiom implements OrderRepo {
   @override
   Future<Either<failer, void>> createOrder({required OrderEntiti order})async {
      
-
+     var ordermodle =OrderModel.fromentitis(order);
     try{
-
-     await databaseService.addData(path: BackendEndpoint.addOrder, 
+    
+     await databaseService.AddData(path: BackendEndpoint.addOrder, 
+     documentid: ordermodle.id,
      
-     data: OrderModel.fromentitis(order).toJson(), );
+     data: ordermodle.toJson(), );
 
    return Right(null);
     }
