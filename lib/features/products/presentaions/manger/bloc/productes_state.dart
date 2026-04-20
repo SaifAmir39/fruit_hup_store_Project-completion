@@ -18,3 +18,9 @@ class ErrorProductsState extends ProductesState{
   final String errormassge;
   ErrorProductsState( {required this.errormassge});
 }
+class GetSerachproducteSucessState extends ProductesState{
+  final List<Productentity> products;
+  GetSerachproducteSucessState({required this.products});
+}
+class ProductNotFoundinSearch extends ProductesState{}
+class TextFailedisempty extends ProductesState{}

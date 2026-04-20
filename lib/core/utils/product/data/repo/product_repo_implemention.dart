@@ -93,5 +93,26 @@ catch(e){
       return Left(serverfailererror(e.toString()));
     }
   }
+  
+  @override
+  Future<Either<failer, List<Productentity>>> SearchProduct({required String productname})async {
+    try{
+
+      var data =await databaseService.getspecificdata(path: BackendEndpoint.getProducts,
+      filters: {
+        "name": productname,
+      }
+      );
+      List<Productentity> products = data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
+      return Right(products);
+
+    }
+    catch(e){
+  print("CRASH ERROR GET CATEGORY:🎭🎭🎭  $e");
+      return Left(serverfailererror(e.toString()));
+
+    }
+   
+  }
 }
  

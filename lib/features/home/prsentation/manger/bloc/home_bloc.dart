@@ -28,7 +28,27 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         (products) => emit(HomeProductsBestSaleingSuccessState(products: products)),
       );
     });
-   
+    on<OnTapTedxtFailedEvent>((event, emit) async {
+      emit(Textfailedemty());
+    
+    });
+
+   on<SerachproducteEvenr>((event, emit) async {
+      emit(HomeLoadingProductsState());
+      final result = await productRepo.SearchProduct(productname: event.text);
+      result.fold(
+        (failure) => emit(HomeErrorProductsState(errormassge: failure.massage)),
+        (products) {
+          if (products.isEmpty) {
+            emit(NoproductFound());
+          }
+         else{
+            emit(GetSerachproducteSucess(products: products));
+         } 
+        }
+      );
+    });
+
 
   }
 }

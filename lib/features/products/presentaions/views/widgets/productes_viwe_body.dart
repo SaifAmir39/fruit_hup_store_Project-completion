@@ -16,35 +16,106 @@ class ProductesViweBody extends StatefulWidget {
 }
 
 class _ProductesViweBodyState extends State<ProductesViweBody> {
- 
- void initState() {
-    
-     
+  TextEditingController textEditingSerachController = TextEditingController();
+  FocusNode focusNode = FocusNode();
+  String serachText = "";
+  void initState() {
     super.initState();
-    BlocProvider.of<ProductesBloc>(context).add(GetProductesinproductviweEvent());
-  
-
+    BlocProvider.of<ProductesBloc>(
+      context,
+    ).add(GetProductesinproductviweEvent());
   }
- 
+
   @override
   Widget build(BuildContext context) {
-   
     return BlocBuilder<ProductesBloc, ProductesState>(
       builder: (context, state) {
-        
-       
-          return CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(child: SizedBox(height: 16)),
-              SliverToBoxAdapter(child: CustomeSearchTextfailed()),
-              SliverToBoxAdapter(child: SizedBox(height: 12)),
+        return CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(child: SizedBox(height: 16)),
+            SliverToBoxAdapter(
+              child: CustomeSearchTextfailed(
+                onSubmitted: (String p1) {
+                  serachText = p1;
+                  BlocProvider.of<ProductesBloc>(context)
+                      .add(SerachProducteEvent(text: textEditingSerachController.text));
+                },
+                focusNode: focusNode,
+                controller: textEditingSerachController,
+                onTap: () {
+                    BlocProvider.of<ProductesBloc>(context)
+                      .add(OnPrassTedxtFailedEvent());
+                },
+              ),
+            ),
+            SliverToBoxAdapter(child: SizedBox(height: 12)),
 
-              SliverToBoxAdapter(
-                child: Row(
-                  children: [
-                    if (state is ProductsSucessState)
-                     
-                    
+                if(state is ProductNotFoundinSearch)
+                
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Center(
+              child:Column(
+                children: [
+                  SvgPicture.asset(
+                    width: 230,
+                    height: 230,
+                    "assets/images/Noproductfound.svg"),
+            
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                'البحث',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: const Color(0xFF616A6B) /* Grayscale-600 */,
+                  fontSize: 16,
+                  fontFamily: 'Cairo',
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+            
+               Text(
+                'عفوًا... هذه المعلومات غير متوفرة للحظة',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: const Color(0xFF949D9E) /* Grayscale-400 */,
+                  fontSize: 13,
+                  fontFamily: 'Cairo',
+                  fontWeight: FontWeight.w400,
+                  height: 1.60,
+                ),
+              ),
+            
+                ],
+              ) ,
+            ),
+          ),
+            if(state is GetSerachproducteSucessState)
+
+             BestSalingGridviwe(products: state.products,),
+            
+            SliverToBoxAdapter(child: SizedBox(height: 12)),
+
+            SliverToBoxAdapter(
+              child: Row(
+                children: [
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                  if (state is ProductsSucessState)
                     Text(
                       'منتجاتنا',
                       textAlign: TextAlign.right,
@@ -55,9 +126,9 @@ class _ProductesViweBodyState extends State<ProductesViweBody> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    if (state is GetProductesFiltersSucessState)
-                     Text(
-                      "${state.products.length}"+" نتائج",
+                  if (state is GetProductesFiltersSucessState)
+                    Text(
+                      "${state.products.length}" + " نتائج",
                       textAlign: TextAlign.right,
                       style: TextStyle(
                         color: const Color(0xFF0C0D0D) /* Grayscale-950 */,
@@ -66,50 +137,51 @@ class _ProductesViweBodyState extends State<ProductesViweBody> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Spacer(),
-                    GestureDetector(
-                      onTap: () {
-                         BlocProvider.of<BootomsheetCubit>(context).changeUi(true);
-                        BootomSheet().showBootomSheet(context);
-                      },
-                      child: Container(
-                        width: 44,
-                        height: 31,
+                  Spacer(),
+                  GestureDetector(
+                    onTap: () {
+                      BlocProvider.of<BootomsheetCubit>(context).changeUi(true);
+                      BootomSheet().showBootomSheet(context);
+                    },
+                    child: Container(
+                      width: 44,
+                      height: 31,
 
-                        decoration: ShapeDecoration(
-                          color: Colors.white.withValues(alpha: 0.10),
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              width: 1,
-                              color: const Color(0x66CACECE),
-                            ),
-                            borderRadius: BorderRadius.circular(4),
+                      decoration: ShapeDecoration(
+                        color: Colors.white.withValues(alpha: 0.10),
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                            width: 1,
+                            color: const Color(0x66CACECE),
                           ),
-                        ),
-                        child: SvgPicture.asset(
-                          "assets/images/arrow-swap-horizontal.svg",
-                          height: 20,
-                          width: 20,
+                          borderRadius: BorderRadius.circular(4),
                         ),
                       ),
+                      child: SvgPicture.asset(
+                        "assets/images/arrow-swap-horizontal.svg",
+                        height: 20,
+                        width: 20,
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+            ),
 
-              SliverToBoxAdapter(child: SizedBox(height: 16)),
-            if (state is ProductsSucessState)  SliverToBoxAdapter(child: ListOfCatgroy()),
-            if (state is GetProductesFiltersSucessState) SliverToBoxAdapter(child: SizedBox()),
-              SliverToBoxAdapter(child: SizedBox(height: 24)),
-             SliverToBoxAdapter(child: SizedBox(height: 12)),
-              if (state is ProductsSucessState) 
-            SliverToBoxAdapter(child: BestSalingHeader()),
-             if (state is GetProductesFiltersSucessState)
-             SliverToBoxAdapter(child: SizedBox()),
+            SliverToBoxAdapter(child: SizedBox(height: 16)),
+            if (state is ProductsSucessState)
+              SliverToBoxAdapter(child: ListOfCatgroy()),
+            if (state is GetProductesFiltersSucessState)
+              SliverToBoxAdapter(child: SizedBox()),
+            SliverToBoxAdapter(child: SizedBox(height: 24)),
+            SliverToBoxAdapter(child: SizedBox(height: 12)),
+            if (state is ProductsSucessState)
+              SliverToBoxAdapter(child: BestSalingHeader()),
+            if (state is GetProductesFiltersSucessState)
+              SliverToBoxAdapter(child: SizedBox()),
             SliverToBoxAdapter(child: SizedBox(height: 8)),
 
-           
-           if (state is ProductsLoadingState)
+            if (state is ProductsLoadingState)
               SliverToBoxAdapter(
                 child: Center(
                   child: CircularProgressIndicator(
@@ -117,25 +189,20 @@ class _ProductesViweBodyState extends State<ProductesViweBody> {
                   ),
                 ),
               ),
-           
-           if (state is ProductsSucessState)
-                           BestSalingGridviwe(products: state.products,),
+
+            if (state is ProductsSucessState)
+              BestSalingGridviwe(products: state.products),
 
             if (state is GetProductesFiltersSucessState)
-                 BestSalingGridviwe(products: state.products,),               
+              BestSalingGridviwe(products: state.products),
 
-         if (state is ErrorProductsState) 
+            if (state is ErrorProductsState)
               SliverToBoxAdapter(
-                child: Center(
-                  child: Text(state.errormassge.toString()),
-                ),
+                child: Center(child: Text(state.errormassge.toString())),
               ),
-              
-            ],
-          );
-        }
-        
-      
+          ],
+        );
+      },
     );
   }
 }

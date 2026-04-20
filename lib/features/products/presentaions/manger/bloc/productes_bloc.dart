@@ -20,6 +20,10 @@ class ProductesBloc extends Bloc<ProductesEvent, ProductesState> {
         (products) => emit(ProductsSucessState(products: products)),
       );
     });
+      on<OnPrassTedxtFailedEvent>((event, emit) async {
+      emit(TextFailedisempty());
+    
+    });
 
     on<GetProductesByFilters>((event, emit) async {
       emit(ProductsLoadingState());
@@ -27,6 +31,21 @@ class ProductesBloc extends Bloc<ProductesEvent, ProductesState> {
       result.fold(
         (failure) => emit(ErrorProductsState(errormassge: failure.massage)),
         (products) => emit(GetProductesFiltersSucessState(products: products)),
+      );
+    });
+    on<SerachProducteEvent>((event, emit) async {
+      emit(ProductsLoadingState());
+      final result = await productRepo.SearchProduct(productname: event.text);
+      result.fold(
+        (failure) => emit(ErrorProductsState(errormassge: failure.massage)),
+        (products) {
+          if (products.isEmpty) {
+            emit(ProductNotFoundinSearch());
+          }
+         else{
+            emit(GetSerachproducteSucessState(products: products));
+         } 
+        }
       );
     });
     

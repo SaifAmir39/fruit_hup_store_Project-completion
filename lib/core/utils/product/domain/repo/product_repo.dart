@@ -13,5 +13,6 @@ abstract class ProductRepo {
     }
     
   );
+  Future<Either<failer,List<Productentity>>> SearchProduct({required String productname});
 
 }

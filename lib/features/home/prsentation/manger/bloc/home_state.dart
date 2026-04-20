@@ -18,3 +18,13 @@ class HomeErrorProductsState extends HomeState{
   final String errormassge;
   HomeErrorProductsState( {required this.errormassge});
 }
+class Textfailedemty extends HomeState{
+
+}
+class NoproductFound extends HomeState{
+  
+}
+class GetSerachproducteSucess extends HomeState{
+  final List<Productentity> products;
+  GetSerachproducteSucess({required this.products});
+}
