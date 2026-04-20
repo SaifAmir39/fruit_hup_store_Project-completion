@@ -11,6 +11,8 @@ import 'package:fruit_hup_store/features/Splash_/presentation/Viwes/Splash_View.
 import 'package:fruit_hup_store/features/Splash_/presentation/Viwes/firebase_options.dart';
 import 'package:fruit_hup_store/features/cart/presentation/manger/cart_cubit.dart';
 import 'package:fruit_hup_store/features/home/prsentation/manger/bloc/home_bloc.dart';
+import 'package:fruit_hup_store/features/products/presentaions/manger/bloc/productes_bloc.dart';
+import 'package:fruit_hup_store/features/products/presentaions/manger/bootomsheet_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +34,19 @@ class FriutHub extends StatelessWidget {
         ),
         BlocProvider<HomeBloc>(
           create: (context) => HomeBloc(productRepo: getIt<ProductRepo>()),
-        ),      ],
+
+        ),      
+          BlocProvider<ProductesBloc>(
+          create: (context) => ProductesBloc(productRepo: getIt<ProductRepo>()),
+          
+        ),  
+          BlocProvider<BootomsheetCubit>(
+          create: (context) => BootomsheetCubit(),
+          
+        ),
+        
+        
+        ],
       child: MaterialApp(
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,

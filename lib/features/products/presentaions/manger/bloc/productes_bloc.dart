@@ -21,6 +21,14 @@ class ProductesBloc extends Bloc<ProductesEvent, ProductesState> {
       );
     });
 
+    on<GetProductesByFilters>((event, emit) async {
+      emit(ProductsLoadingState());
+      final result = await productRepo.getProductesByFilter(minimum: event.minimum, maximum: event.maximum,orderby:  event.orderby);
+      result.fold(
+        (failure) => emit(ErrorProductsState(errormassge: failure.massage)),
+        (products) => emit(GetProductesFiltersSucessState(products: products)),
+      );
+    });
     
 
   

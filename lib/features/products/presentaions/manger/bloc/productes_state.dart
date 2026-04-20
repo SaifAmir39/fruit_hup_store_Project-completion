@@ -10,6 +10,10 @@ class ProductsSucessState extends ProductesState{
 }
 class ProductsLoadingState extends ProductesState{}
 
+class GetProductesFiltersSucessState extends ProductesState{
+  final List<Productentity> products;
+  GetProductesFiltersSucessState({required this.products});
+}
 class ErrorProductsState extends ProductesState{
   final String errormassge;
   ErrorProductsState( {required this.errormassge});

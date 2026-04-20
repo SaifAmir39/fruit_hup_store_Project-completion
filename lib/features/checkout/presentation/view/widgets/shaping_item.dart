@@ -5,8 +5,8 @@ import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/inac
 class ShapingItem  extends StatefulWidget{
  bool iscardit=false;
  void Function() onTap;
- bool isselected=false;
- double totleprice;
+  bool isselected=false;
+  double totleprice;
   ShapingItem({required this.iscardit, required this.onTap,required this.isselected,required this.totleprice});
 
   @override

@@ -67,5 +67,31 @@ catch(e){
       return Left(serverfailererror(e.toString()));
     }
   }
+  
+  @override
+  Future<Either<failer, List<Productentity>>> getProductesByFilter({ required double minimum,required double maximum,required bool orderby})async {
+   
+   try{
+    var data =await databaseService.getspecificdata(path: BackendEndpoint.getProducts,
+    rangeFilters: {
+      "price":{
+        "min":minimum,
+        "max":maximum,
+      }
+      
+      
+      
+    },
+    orderBy: "price",
+    descending: orderby
+    );
+    List<Productentity> products = data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
+  return Right(products);
+   }
+    catch(e){
+      print("CRASH ERROR GET CATEGORY:🤑🤑🤑🤑  $e");
+      return Left(serverfailererror(e.toString()));
+    }
+  }
 }
  

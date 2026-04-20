@@ -7,5 +7,11 @@ abstract class ProductRepo {
  Future<Either<failer,List<Productentity>>> getAllProducts();
  Future<Either<failer,List<Productentity>>> getProductsBustsalleing();
   Future<Either<failer,List<Productentity>>> getCategory();
+  Future<Either<failer,List<Productentity>>> getProductesByFilter(
+    {
+       required double minimum,required double maximum,required bool orderby
+    }
+    
+  );
 
 }

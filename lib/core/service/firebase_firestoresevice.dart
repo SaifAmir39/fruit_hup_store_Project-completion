@@ -61,7 +61,7 @@ class FirebaseFirestoresevice implements DatabaseService {
  @override
 Future<List<Map<String, dynamic>>> getspecificdata({
   required String path,
-
+    Map<String, dynamic>? rangeFilters,
   Map<String, dynamic>? filters,
   String? orderBy,
   bool descending = false,
@@ -74,6 +74,17 @@ Future<List<Map<String, dynamic>>> getspecificdata({
   if (filters != null) {
     filters.forEach((key, value) {
       collection = collection.where(key, isEqualTo: value);
+    });
+  }
+  /// 🔹 Range Filters (زي السعر)
+  if (rangeFilters != null) {
+    rangeFilters.forEach((key, value) {
+      if (value['min'] != null) {
+        collection = collection.where(key, isGreaterThanOrEqualTo: value['min']);
+      }
+      if (value['max'] != null) {
+        collection = collection.where(key, isLessThanOrEqualTo: value['max']);
+      }
     });
   }
 

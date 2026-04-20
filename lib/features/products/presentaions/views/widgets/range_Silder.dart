@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 
 class CustomRangeSlider extends StatefulWidget {
+  final Function(RangeValues) onChanged;
+
+  const CustomRangeSlider({
+    Key? key,
+    required this.onChanged,
+  }) : super(key: key);
+
   @override
   _CustomRangeSliderState createState() => _CustomRangeSliderState();
 }
 
 class _CustomRangeSliderState extends State<CustomRangeSlider> {
-  RangeValues _values = RangeValues(150, 300);
+  RangeValues _values = RangeValues(5, 200);
 
-  double min = 0;
-  double max = 500;
+  double min = 5;
+  double max = 200;
 
   @override
   Widget build(BuildContext context) {
@@ -24,29 +31,31 @@ class _CustomRangeSliderState extends State<CustomRangeSlider> {
             ((_values.end - min) / (max - min)) * width;
 
         return SizedBox(
-          height: 35,
+          height: 60,
           child: Stack(
             children: [
               // 🔢 الأرقام
               Positioned(
-                left: startPos - 20,
+                left: startPos > 30 ? startPos - 30 : 0,
                 top: 0,
                 child: Text(
                   "\$${_values.start.toInt()}",
                   style: TextStyle(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,
+                    fontSize: 12,
                   ),
                 ),
               ),
               Positioned(
-                left: endPos - 20,
+                left: endPos > 30 ? endPos - 30 : startPos + 40,
                 top: 0,
                 child: Text(
                   "\$${_values.end.toInt()}",
                   style: TextStyle(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,
+                    fontSize: 12,
                   ),
                 ),
               ),
@@ -64,7 +73,9 @@ class _CustomRangeSliderState extends State<CustomRangeSlider> {
                     setState(() {
                       _values = values;
                     });
+                     widget.onChanged(values);
                   },
+                 
                 ),
               ),
             ],

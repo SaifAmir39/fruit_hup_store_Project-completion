@@ -6,6 +6,7 @@ import 'package:fruit_hup_store/core/utils/custome_search%20_textfailed.dart';
 import 'package:fruit_hup_store/features/home/prsentation/widgets/Best_saling_header.dart';
 import 'package:fruit_hup_store/features/home/prsentation/widgets/best_saling_gridviwe.dart';
 import 'package:fruit_hup_store/features/products/presentaions/manger/bloc/productes_bloc.dart';
+import 'package:fruit_hup_store/features/products/presentaions/manger/bootomsheet_cubit.dart';
 import 'package:fruit_hup_store/features/products/presentaions/views/widgets/bootom_sheet.dart';
 import 'package:fruit_hup_store/features/products/presentaions/views/widgets/list_of_catgroy.dart';
 
@@ -21,11 +22,13 @@ class _ProductesViweBodyState extends State<ProductesViweBody> {
      
     super.initState();
     BlocProvider.of<ProductesBloc>(context).add(GetProductesinproductviweEvent());
-    
+  
+
   }
  
   @override
   Widget build(BuildContext context) {
+   
     return BlocBuilder<ProductesBloc, ProductesState>(
       builder: (context, state) {
         
@@ -39,8 +42,22 @@ class _ProductesViweBodyState extends State<ProductesViweBody> {
               SliverToBoxAdapter(
                 child: Row(
                   children: [
+                    if (state is ProductsSucessState)
+                     
+                    
                     Text(
                       'منتجاتنا',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        color: const Color(0xFF0C0D0D) /* Grayscale-950 */,
+                        fontSize: 16,
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    if (state is GetProductesFiltersSucessState)
+                     Text(
+                      "${state.products.length}"+" نتائج",
                       textAlign: TextAlign.right,
                       style: TextStyle(
                         color: const Color(0xFF0C0D0D) /* Grayscale-950 */,
@@ -52,6 +69,7 @@ class _ProductesViweBodyState extends State<ProductesViweBody> {
                     Spacer(),
                     GestureDetector(
                       onTap: () {
+                         BlocProvider.of<BootomsheetCubit>(context).changeUi(true);
                         BootomSheet().showBootomSheet(context);
                       },
                       child: Container(
@@ -80,10 +98,14 @@ class _ProductesViweBodyState extends State<ProductesViweBody> {
               ),
 
               SliverToBoxAdapter(child: SizedBox(height: 16)),
-              SliverToBoxAdapter(child: ListOfCatgroy()),
+            if (state is ProductsSucessState)  SliverToBoxAdapter(child: ListOfCatgroy()),
+            if (state is GetProductesFiltersSucessState) SliverToBoxAdapter(child: SizedBox()),
               SliverToBoxAdapter(child: SizedBox(height: 24)),
              SliverToBoxAdapter(child: SizedBox(height: 12)),
+              if (state is ProductsSucessState) 
             SliverToBoxAdapter(child: BestSalingHeader()),
+             if (state is GetProductesFiltersSucessState)
+             SliverToBoxAdapter(child: SizedBox()),
             SliverToBoxAdapter(child: SizedBox(height: 8)),
 
            
@@ -98,6 +120,10 @@ class _ProductesViweBodyState extends State<ProductesViweBody> {
            
            if (state is ProductsSucessState)
                            BestSalingGridviwe(products: state.products,),
+
+            if (state is GetProductesFiltersSucessState)
+                 BestSalingGridviwe(products: state.products,),               
+
          if (state is ErrorProductsState) 
               SliverToBoxAdapter(
                 child: Center(

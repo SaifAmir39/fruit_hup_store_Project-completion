@@ -20,7 +20,7 @@ abstract class DatabaseService {
   });
   Future<List<Map<String, dynamic>>> getspecificdata({
     required String path,
-
+     Map<String, dynamic>? rangeFilters, 
     Map<String, dynamic>? filters,
     String? orderBy,
     bool descending = false,

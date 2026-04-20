@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TextfailedOfSort extends StatelessWidget {
+ final TextEditingController controller;
+  TextfailedOfSort({required this.controller});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,6 +12,7 @@ class TextfailedOfSort extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: TextField(
+          controller: controller,
           keyboardType: TextInputType.number,
         textAlign: TextAlign.center,
          decoration:InputDecoration(
