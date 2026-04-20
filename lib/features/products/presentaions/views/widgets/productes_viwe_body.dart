@@ -138,6 +138,10 @@ class _ProductesViweBodyState extends State<ProductesViweBody> {
                       ),
                     ),
                   Spacer(),
+                  if (state is GetSerachproducteSucessState)
+                  SizedBox(width: 12),
+                  
+                  if (state is ProductsSucessState)
                   GestureDetector(
                     onTap: () {
                       BlocProvider.of<BootomsheetCubit>(context).changeUi(true);
