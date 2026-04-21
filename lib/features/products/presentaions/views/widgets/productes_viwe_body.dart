@@ -128,7 +128,7 @@ class _ProductesViweBodyState extends State<ProductesViweBody> {
                     ),
                   if (state is GetProductesFiltersSucessState)
                     Text(
-                      "${state.products.length}" + " نتائج",
+                      "(${state.products.length})"  +  " نتائج",
                       textAlign: TextAlign.right,
                       style: TextStyle(
                         color: const Color(0xFF0C0D0D) /* Grayscale-950 */,
@@ -141,7 +141,7 @@ class _ProductesViweBodyState extends State<ProductesViweBody> {
                   if (state is GetSerachproducteSucessState)
                   SizedBox(width: 12),
                   
-                  if (state is ProductsSucessState)
+                  if (state is ProductsSucessState || state is GetProductesFiltersSucessState)
                   GestureDetector(
                     onTap: () {
                       BlocProvider.of<BootomsheetCubit>(context).changeUi(true);

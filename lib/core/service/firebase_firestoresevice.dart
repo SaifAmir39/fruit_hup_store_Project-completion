@@ -113,7 +113,21 @@ Future<List<Map<String, dynamic>>> getspecificdata({
     await firestore.collection(path).add(data);
     
   }
-  
+  @override
+  Future<void> updateData({required String path, required Map<String, dynamic> data, required String documentid})async {
+   await firestore.collection(path).doc(documentid).update(data);
+    
+  }
+   @override
+  Stream<List< Map<String, dynamic>>> getStreamdata({
+    required String path,
+    
+  }) async* {
+    var data = firestore.collection(path);
+    await for (var snapshot in data.snapshots() ) {
+      yield snapshot.docs.map((e) => e.data()).toList();
+    }
+  }
  
   
 }

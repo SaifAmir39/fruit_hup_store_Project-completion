@@ -7,6 +7,7 @@ import 'package:fruit_hup_store/features/auth/data/repos/auth_repo_implementions
 import 'package:fruit_hup_store/features/auth/domain/repoes/auth_repo.dart';
 import 'package:fruit_hup_store/features/checkout/data/repo/order_repo_implementiom.dart';
 import 'package:fruit_hup_store/features/checkout/domain/repo/order_repo.dart';
+
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;

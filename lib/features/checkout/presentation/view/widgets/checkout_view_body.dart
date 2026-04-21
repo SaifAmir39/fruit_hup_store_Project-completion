@@ -4,7 +4,7 @@ import 'package:fruit_hup_store/core/utils/Custome%20Bottun.dart';
 import 'package:fruit_hup_store/core/utils/app_colors.dart';
 import 'package:fruit_hup_store/core/utils/helper_functions/Custome%20_Appbar.dart';
 import 'package:fruit_hup_store/features/cart/domain/entitis/cart_entiti.dart';
-import 'package:fruit_hup_store/features/checkout/presentation/manger/order_cubit.dart';
+import 'package:fruit_hup_store/features/checkout/presentation/manger/check_out_cubit.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/Address_Section.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/active_Step.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/in_active_step.dart';
@@ -34,7 +34,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         currentPage = pageController.page!.round();
       });
     });
-    BlocProvider.of<OrderCubit>(
+    BlocProvider.of<CheckoutCubit>(
       context,
     ).getOrderitems(items: widget.cartEntiti);
   }
@@ -98,7 +98,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                 itemCount: pages.length,
               ),
             ),
-            BlocBuilder<OrderCubit, OrderState>(
+            BlocBuilder<CheckoutCubit, CheckoutState>(
               builder: (context, state) {
               if (state is AddorderLoedingstate) {
                 return Center(
@@ -140,7 +140,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                       );
                     }
                     if (currentPage == 3) {
-                      BlocProvider.of<OrderCubit>(context).addorder();
+                      BlocProvider.of<CheckoutCubit>(context).addorder();
                       print("order added");
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(

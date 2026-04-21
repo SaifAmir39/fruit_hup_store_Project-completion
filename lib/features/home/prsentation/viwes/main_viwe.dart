@@ -4,6 +4,7 @@ import 'package:fruit_hup_store/features/cart/presentation/views/cart_viwe.dart'
 import 'package:fruit_hup_store/features/home/prsentation/viwes/home_viwe.dart';
 import 'package:fruit_hup_store/features/home/prsentation/widgets/cutome_bootom_navgaitonbar.dart';
 import 'package:fruit_hup_store/features/products/presentaions/views/productes_viwe.dart';
+import 'package:fruit_hup_store/features/profile/products/presentation/views/profile_viwe.dart';
 
 class Mainviwe extends StatefulWidget {
    static const String routeName = 'Home viwe';
@@ -19,9 +20,7 @@ class _MainviweState extends State<Mainviwe> {
     SafeArea(child: HomeViwe()),
    ProductesViwe(),
   CartViwe(),
-    Scaffold(
-
-    )
+   ProfileViwe(),
   ];
 
    @override

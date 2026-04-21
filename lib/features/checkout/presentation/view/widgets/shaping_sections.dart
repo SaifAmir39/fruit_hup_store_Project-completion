@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruit_hup_store/features/checkout/presentation/manger/order_cubit.dart';
+import 'package:fruit_hup_store/features/checkout/presentation/manger/check_out_cubit.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/shaping_item.dart';
 
 class ShapingSections extends StatefulWidget {
@@ -19,7 +19,7 @@ bool valdton(){
   if(selectedIndex==-1){
     return false;
   }else{
-    BlocProvider.of<OrderCubit>(context).getpaymentway(way: selectedIndex);
+    BlocProvider.of<CheckoutCubit>(context).getpaymentway(way: selectedIndex);
     return true;
   }
 }
@@ -32,7 +32,7 @@ bool valdton(){
   
   Widget build(BuildContext context) {
    
-var ordercunite=BlocProvider.of<OrderCubit>(context);
+var ordercunite=BlocProvider.of<CheckoutCubit>(context);
 
     return Column(
      

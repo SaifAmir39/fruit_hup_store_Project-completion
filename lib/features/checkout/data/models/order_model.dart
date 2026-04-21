@@ -1,3 +1,5 @@
+
+
 import 'package:fruit_hup_store/features/checkout/data/models/order_productes_modle.dart';
 import 'package:fruit_hup_store/features/checkout/data/models/shaiping_Addres_modle.dart';
 import 'package:fruit_hup_store/features/checkout/domain/entitis/address_entiti.dart';
@@ -37,6 +39,30 @@ return OrderModel(
   PaymentMethod: orderEntiti.ispymentmethod??0, id: Uuid().v4(),
 );
 
+}
+factory OrderModel.fromjson(Map<String,dynamic>json){
+return OrderModel(
+
+  id: json["id"] ?? "",
+  uid: json["uid"] ?? "",
+  total: (json["total"] as num?)?.toDouble() ?? 0.0,
+  status: json["status"] ?? "",
+  address: ShaipingAddresModle.fromjson(json["address"] ?? {}),
+  products: (json["products"] as List?)?.map((e) => OrderProductesModle.fromjson(e)).toList() ?? [],
+  PaymentMethod: json["paymentMethod"] ?? 0,
+);
+}
+OrderEntiti toEntiti() {
+  return OrderEntiti(
+    id: id,
+    status: status,
+    uiID: uid,
+    totalPrice: total,
+    
+    orderPorductes: products.map((e) => e.toentiti()).toList(),
+    addressEntiti: address.toentites(),
+    ispymentmethod: PaymentMethod,
+  );
 } 
 toJson() {
   return {

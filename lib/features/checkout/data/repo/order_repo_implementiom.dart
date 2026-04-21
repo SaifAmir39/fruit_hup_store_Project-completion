@@ -33,4 +33,24 @@ class OrderRepoImplementiom implements OrderRepo {
 
     
   }
+
+  @override
+  Stream<Either<failer, List<OrderEntiti>>> getOrders()async* {
+   try{
+    
+
+          await for(var data in databaseService.getStreamdata(path: "Orders")){
+            
+            
+             yield Right(data.map((e) => OrderModel.fromjson(e).toEntiti()).toList());
+             print(data);
+          }
+     
+    }
+    catch(e){
+       yield Left(serverfailererror(e.toString()));
+       print(e.toString());
+    }
+   
+  }
 }

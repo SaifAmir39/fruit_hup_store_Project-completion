@@ -29,7 +29,7 @@ class CustomeHomeAppbar extends StatelessWidget {
      style: TextStyles.regular16.copyWith(color: Color(0xFF949D9E)),
      
      ),
-     subtitle: Text( getuserdata().name,textAlign: TextAlign.right, style:  TextStyles.bold16.copyWith(color: Color(0xFF0C0D0D))),
+     subtitle: Text( getinfouserdata().name,textAlign: TextAlign.right, style:  TextStyles.bold16.copyWith(color: Color(0xFF0C0D0D))),
         trailing: Container(
           width: 44,
           height: 44,

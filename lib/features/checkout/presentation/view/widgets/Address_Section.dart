@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup_store/core/utils/app_colors.dart';
 import 'package:fruit_hup_store/features/checkout/domain/entitis/address_entiti.dart';
-import 'package:fruit_hup_store/features/checkout/presentation/manger/order_cubit.dart';
+import 'package:fruit_hup_store/features/checkout/presentation/manger/check_out_cubit.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/input_addres_textfailed.dart';
 
 class AddressSection  extends StatefulWidget{
@@ -23,7 +23,7 @@ class AddressSectionState extends State<AddressSection> {
     if(namecontroller.text.isEmpty||emailcontroller.text.isEmpty||addresscontroller.text.isEmpty||citycontroller.text.isEmpty||floorcontroller.text.isEmpty){
       return false;
     }else{
-      BlocProvider.of<OrderCubit>(context).getAddres(
+      BlocProvider.of<CheckoutCubit>(context).getAddres(
    
         address: AddressEntiti(
           name: namecontroller.text,

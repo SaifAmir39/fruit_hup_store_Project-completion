@@ -4,6 +4,7 @@ import 'package:fruit_hup_store/features/checkout/domain/entitis/order_entiti.da
 
 abstract class OrderRepo {
 Future<Either<failer,void>> createOrder({required OrderEntiti order});
+Stream<Either<failer,List<OrderEntiti>>> getOrders();
 
 
 

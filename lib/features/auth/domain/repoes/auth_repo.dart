@@ -8,8 +8,13 @@ Future<Either<failer,Userentitie>>createuserwithemailanpassword(String email , S
 Future<Either<failer,Userentitie>>signinuserwithanemailandpassword(String email , String password);
 Future<Either<failer,Userentitie>>signInWithGoogle();
 Future<Either<failer,Userentitie>>signInWithFacebook();
+
+
 Future<void> adduserToFirestore({required Userentitie user});
 Future<Userentitie> getuserdata({ required String uid});
 Future<void>saveuser({required Userentitie user});
 
+Future<Either<failer,void>>UpdateEmail({required String email,});
+Future<Either<failer,void>>UpdateUserName({required String username,});
+Future<Either<failer,void>>changepasswored({required String newpassword,});
 }

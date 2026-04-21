@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruit_hup_store/features/checkout/presentation/manger/order_cubit.dart';
+import 'package:fruit_hup_store/features/checkout/presentation/manger/check_out_cubit.dart';
 import 'package:fruit_hup_store/features/checkout/presentation/view/widgets/pyment%20_way_iteam.dart';
 
 class ReviewSecations extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- var   ordercunite =BlocProvider.of<OrderCubit>(context);
+ var   ordercunite =BlocProvider.of<CheckoutCubit>(context);
    return Column(
    crossAxisAlignment: CrossAxisAlignment.start,
    

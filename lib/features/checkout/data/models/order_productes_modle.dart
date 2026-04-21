@@ -1,4 +1,5 @@
 import 'package:fruit_hup_store/features/cart/domain/entitis/cart_item_entitis.dart';
+import 'package:fruit_hup_store/features/checkout/domain/entitis/order_productes_entiti.dart';
 
 class OrderProductesModle  {
  String name;
@@ -17,13 +18,36 @@ class OrderProductesModle  {
     required this.quantity,
   });
 
+OrderProductesEntiti toentiti(){
+  return OrderProductesEntiti(
+    name: name, 
+    price: price, 
+    description: description, 
+    image: image, 
+    code: code, 
+    quantity: quantity
+  );
+}
+
+
+factory OrderProductesModle.fromjson(Map<String,dynamic>json){
+  return OrderProductesModle(
+    name: (json["name"] as String?) ?? "",
+    price: (json["price"] as num?)?.toDouble() ?? 0.0,
+    description: (json["description"] as String?) ?? "",
+    image: (json["image"] as String?) ?? "",
+    code: (json["code"] as String?) ?? "",
+    quantity: (json["quantity"] as num?)?.toInt() ?? 0
+  );
+}
+
 
 factory OrderProductesModle.fromentitis(CartItementity cartItementity){
   return OrderProductesModle(
     name: cartItementity.productentity.name,
     price: cartItementity.productentity.price,
     description: cartItementity.productentity.description,
-    image: cartItementity.productentity.image,
+    image: cartItementity.productentity.imageURL??"",
     code: cartItementity.productentity.code,
     quantity: cartItementity.quantity
   );

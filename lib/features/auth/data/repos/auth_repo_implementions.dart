@@ -8,6 +8,7 @@ import 'package:fruit_hup_store/core/service/Database_service.dart';
 import 'package:fruit_hup_store/core/service/auth_service.dart';
 import 'package:fruit_hup_store/core/service/shared_preferences_singletone.dart';
 import 'package:fruit_hup_store/core/utils/backend_endpoint.dart';
+import 'package:fruit_hup_store/core/utils/helper_functions/get%20user.dart';
 import 'package:fruit_hup_store/features/auth/data/models/user_model.dart';
 import 'package:fruit_hup_store/features/auth/domain/entities/user%20_entitie.dart';
 import 'package:fruit_hup_store/features/auth/domain/repoes/auth_repo.dart';
@@ -148,5 +149,50 @@ class AuthRepoImplementions implements AuthRepo {
   Future<void> saveuser({required Userentitie user}) async {
     var Jsondata = jsonEncode(UserModel.fromentite(user).toMap());
     await CacheNetwork.insertToCacheString(key:"user_data" , value: Jsondata);
+  }
+  
+  @override
+  Future<Either<failer,void>> UpdateEmail({required String email})async {
+  
+   try{
+    await databaseService.updateData(path: "users", data: {"email":email}, documentid:
+    getinfouserdata().udi
+    
+    );
+   return right(null);
+   }
+   catch(e){
+     return left(serverfailererror(e.toString()));
+   }
+
+  }
+  
+  @override
+  Future<Either<failer, void>> UpdateUserName({required String username}) async{
+     try{
+    await databaseService.updateData(path: "users", data: {"name":username}, documentid:
+    getinfouserdata().udi
+    
+    );
+   return right(null);
+   }
+   catch(e){
+     return left(serverfailererror(e.toString()));
+   }
+
+   
+  }
+  
+  @override
+  Future<Either<failer, void>> changepasswored({required String newpassword})async {
+  try{
+    await authService.changePassword(newPassword: newpassword);
+    return right(null);
+  }  
+
+   catch(e){
+     return left(serverfailererror(e.toString()));
+   }
+  
   }
 }

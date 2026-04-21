@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruit_hup_store/core/service/auth_service.dart';
 import 'package:fruit_hup_store/core/utils/app_images.dart';
+import 'package:fruit_hup_store/features/auth/prsentaion/Viwes/loin_viwe.dart';
 import 'package:fruit_hup_store/features/home/prsentation/viwes/main_viwe.dart';
-import 'package:fruit_hup_store/features/on_boardin/presentation/Viwes/on_boardaing_viwe.dart';
 
 class SplashViweBody extends StatefulWidget {
 
@@ -57,14 +57,15 @@ Future.delayed(Duration(seconds: 4)
   bool islogin = AuthService().Userloggedin();
 
 
-Navigator.pushReplacementNamed(context, 
-OnBoardaingViwe.routeName);
 
 if (islogin){
   Navigator.pushReplacementNamed(context, 
 Mainviwe.routeName);
 }
-
+else{
+  Navigator.pushReplacementNamed(context, 
+LoinViwe.routeName);
+}
 
 
 

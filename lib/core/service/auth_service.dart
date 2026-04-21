@@ -122,7 +122,17 @@ Future<void>deleteuser()async{
   }
 }
 
+Future<void> changePassword( {required String newPassword}) async {
+  try {
+    User? user = FirebaseAuth.instance.currentUser;
 
+    await user!.updatePassword(newPassword);
+
+    print("Password updated successfully");
+  } catch (e) {
+    print("Error: $e");
+  }
+}
 
 
 

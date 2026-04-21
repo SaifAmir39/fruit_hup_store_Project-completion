@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
 
 class CustomeTxetFormFailed extends StatelessWidget {
-final String title;
+final String? title;
 final TextInputType textInputType;
 final Widget? suffixicon;
 final TextEditingController textEditingController;
 final bool isviwed;
-CustomeTxetFormFailed({ this.isviwed=false ,required this.title,required this.textInputType , this.suffixicon,required this.textEditingController});
+CustomeTxetFormFailed({ this.isviwed=false , this.title,required this.textInputType , this.suffixicon,required this.textEditingController});
    
 @override
   Widget build(BuildContext context) {
