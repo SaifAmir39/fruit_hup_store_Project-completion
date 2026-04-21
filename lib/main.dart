@@ -13,6 +13,7 @@ import 'package:fruit_hup_store/features/cart/presentation/manger/cart_cubit.dar
 import 'package:fruit_hup_store/features/home/prsentation/manger/bloc/home_bloc.dart';
 import 'package:fruit_hup_store/features/products/presentaions/manger/bloc/productes_bloc.dart';
 import 'package:fruit_hup_store/features/products/presentaions/manger/bootomsheet_cubit.dart';
+import 'package:fruit_hup_store/features/profile/products/presentation/manger/favorites_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +43,11 @@ class FriutHub extends StatelessWidget {
         ),  
           BlocProvider<BootomsheetCubit>(
           create: (context) => BootomsheetCubit(),
+          
+        ),
+
+           BlocProvider<FavoritesBloc>(
+          create: (context) => FavoritesBloc(productRepo: getIt<ProductRepo>()),
           
         ),
         

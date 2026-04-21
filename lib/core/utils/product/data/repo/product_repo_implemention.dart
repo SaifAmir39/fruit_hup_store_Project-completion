@@ -114,5 +114,43 @@ catch(e){
     }
    
   }
+  
+  @override
+  Future<Either<failer, void>> addProducttoFavorites({required Productentity productentity})async {
+    try{
+
+     await databaseService.AddData(path: "favorites",
+      data: ProductModel.fromentity(productentity).toMap(), 
+      documentid: productentity.code);
+         return Right(null);
+
+      
+   }
+   catch(e){
+    return Left(serverfailererror(e.toString()));
+
+   }
+   
+  }
+  
+  @override
+  Future<Either<failer, List<Productentity>>> getFavoritesProducts() async{
+    try{
+  var data = await databaseService.getalldata(path: "favorites");
+  print("DATA 😍😍😍: $data");
+  List<Productentity> products = data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
+  return Right(products);
+         
+  }
+   
+  
+catch(e){
+  print("CRASH ERROR: $e");
+  return Left(serverfailererror(e.toString()));
+  
+}
+   
+    
+  }
 }
  

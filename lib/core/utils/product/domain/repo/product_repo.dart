@@ -5,6 +5,7 @@ import 'package:fruit_hup_store/core/utils/product/domain/entities/product_entit
 abstract class ProductRepo {
  
  Future<Either<failer,List<Productentity>>> getAllProducts();
+
  Future<Either<failer,List<Productentity>>> getProductsBustsalleing();
   Future<Either<failer,List<Productentity>>> getCategory();
   Future<Either<failer,List<Productentity>>> getProductesByFilter(
@@ -14,5 +15,7 @@ abstract class ProductRepo {
     
   );
   Future<Either<failer,List<Productentity>>> SearchProduct({required String productname});
+Future<Either<failer,void>> addProducttoFavorites({required Productentity productentity});
+ Future<Either<failer,List<Productentity>>> getFavoritesProducts();
 
 }

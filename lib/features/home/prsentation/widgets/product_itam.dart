@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
 import 'package:fruit_hup_store/core/utils/product/domain/entities/product_entities.dart';
 import 'package:fruit_hup_store/features/cart/presentation/manger/cart_cubit.dart';
+import 'package:fruit_hup_store/features/profile/products/presentation/manger/favorites_bloc.dart';
 
 class Productitem extends StatefulWidget {
  final void Function() onTap;
@@ -14,12 +15,12 @@ class Productitem extends StatefulWidget {
 }
 
 class _ProductitemState extends State<Productitem> {
-  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
+        height: 260,
         decoration: ShapeDecoration(
           color: const Color(0xFFF3F5F7),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
@@ -29,19 +30,24 @@ class _ProductitemState extends State<Productitem> {
             Positioned(
               top: 0,
               right: 0,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isFavorite = !isFavorite;
-                  });
+             
+              child: BlocBuilder<FavoritesBloc, FavoritesState>(
+                builder: (context, state) {
+                  bool isFavorite = context.read<FavoritesBloc>().isFavorite(widget.product.code);
+
+                  return IconButton(
+                    onPressed: () {
+                      context.read<FavoritesBloc>().add(
+                        AddtoFavoritesEvent(productEntities: widget.product),
+                      );
+                    },
+                    icon: Icon(
+                      isFavorite ? Icons.favorite : Icons.favorite_border_outlined,
+                      color: isFavorite ? Colors.red : Colors.black,
+                      size: 24,
+                    ),
+                  );
                 },
-                child: Icon(
-                 
-                   
-                    isFavorite ? Icons.favorite : Icons.favorite_border_outlined,
-                    color: isFavorite ? Colors.red : Colors.black,
-                  
-                ),
               ),
             ),
             Positioned.fill(
@@ -51,6 +57,7 @@ class _ProductitemState extends State<Productitem> {
       
                    Flexible(
                     child: FittedBox(
+                      
                       fit: BoxFit.scaleDown,
                       child: Image.network(
                         widget.product.image,

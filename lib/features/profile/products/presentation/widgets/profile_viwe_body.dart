@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:fruit_hup_store/features/profile/data/profileItemModle.dart';
 import 'package:fruit_hup_store/features/profile/products/presentation/views/Orders.dart';
 import 'package:fruit_hup_store/features/profile/products/presentation/views/email_veiw.dart';
+import 'package:fruit_hup_store/features/profile/products/presentation/views/favorite_viwe.dart';
 import 'package:fruit_hup_store/features/profile/products/presentation/widgets/logput_item.dart';
 
 import 'package:fruit_hup_store/features/profile/products/presentation/widgets/profile_info.dart';
@@ -21,7 +22,10 @@ ProfileItemModle(image: 'assets/images/box.svg', title: 'طلباتي',onTap: ()
  Navigator.push(context, MaterialPageRoute(builder: (context) => OrdersView()));
   
 }),
-ProfileItemModle(image: 'assets/images/empty-wallet.svg', title: 'المدفوعات',onTap: (){}),
+ProfileItemModle(image: 'assets/images/empty-wallet.svg', title: 'المدفوعات',onTap: (){
+
+  Navigator.push(context, MaterialPageRoute(builder: (context) => FavoriteViwe()));
+}),
 ProfileItemModle(image: 'assets/images/heart.svg', title: 'المفضلة',onTap: (){}),
 ];
     

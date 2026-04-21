@@ -53,20 +53,39 @@ class ProductModel {
   return ProductModel(
     name: json['name'] ?? '',
     description: json['description'] ?? '',
-    code: json['code'] ?? 0,
-    price: json['price'] ?? 0,
+    code: json['code']?.toString() ?? '',
+    price: (json['price'] as num?)?.toDouble() ?? 0.0,
     image: json['imageURL'] ?? '',
     isFeatured: json['isFeatured'] ?? false,
 
     // 👇 الحاجات الاختيارية
-    numberOfCalories: json['numberofcaliores'] ?? 0,
-    unitAmount: json['unitaMount'] ?? 0,
+    numberOfCalories: (json['numberofcaliores'] as num?)?.toInt() ?? 0,
+    unitAmount: (json['unitaMount'] as num?)?.toInt() ?? 0,
     isOrganic: json['isOrganic'] ?? false,
-    expirationMonths: json['expirationsMountes'] ?? 0, reviews: (json['reviews'] as List<dynamic>?)
+    expirationMonths: (json['expirationsMountes'] as num?)?.toInt() ?? 0,
+    reviews: (json['reviews'] as List<dynamic>?)
         ?.map((reviewJson) => ReviewModle.fromjson(reviewJson))
         .toList() ?? [],
   );
 }
+factory ProductModel.fromentity(
+    Productentity productentity,
+  ) {
+    return ProductModel(
+      name: productentity.name,
+      price: productentity.price,
+      description: productentity.description,
+      image: productentity.image,
+      code: productentity.code,
+      isFeatured: productentity.isFeatured,
+     
+      isOrganic: productentity.isOrganic, reviews: productentity.reviews.map((e) => ReviewModle.fromEntity(e)).toList(), 
+      numberOfCalories: productentity.numberofcaliores, 
+      unitAmount: productentity.unitaMount, 
+      expirationMonths: productentity.expirationsMountes,
+    );
+  }
+
   Map<String, dynamic> toMap() {
     return {
       "name": name,
