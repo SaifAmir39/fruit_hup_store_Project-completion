@@ -133,7 +133,17 @@ Future<void> changePassword( {required String newPassword}) async {
     print("Error: $e");
   }
 }
+Future<void> logout( ) async {
+  try {
+   
 
+     await FirebaseAuth.instance.signOut();
+
+    print("Logout successfully 😒😒😒");
+  } catch (e) {
+    print("Error: $e");
+  }
+}
 
 
 

@@ -20,7 +20,7 @@ class _ProductitemState extends State<Productitem> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
-        height: 260,
+        height: 230,
         decoration: ShapeDecoration(
           color: const Color(0xFFF3F5F7),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
@@ -53,7 +53,7 @@ class _ProductitemState extends State<Productitem> {
             Positioned.fill(
               child: Column(
                 children: [
-                  SizedBox(height: 20),
+                  SizedBox(height:38 ),
       
                    Flexible(
                     child: FittedBox(

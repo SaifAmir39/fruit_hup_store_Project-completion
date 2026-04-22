@@ -12,6 +12,7 @@ class TextfailedOfSort extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: TextField(
+          onTap: null,
           controller: controller,
           keyboardType: TextInputType.number,
         textAlign: TextAlign.center,

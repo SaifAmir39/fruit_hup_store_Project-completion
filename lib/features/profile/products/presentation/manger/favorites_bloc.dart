@@ -32,11 +32,11 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         emit(GetFavoritesError(message: l.massage));
       },
       (r) {
-        // Add to local list if not already there
+        
         if(!favoriteProducts.any((p) => p.code == event.productEntities.code)) {
           favoriteProducts.add(event.productEntities);
         }
-        // Emit success with updated list
+     
         if(favoriteProducts.isEmpty){
           emit(FavoritesisEmpty());
         } else {

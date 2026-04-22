@@ -17,4 +17,5 @@ Future<void>saveuser({required Userentitie user});
 Future<Either<failer,void>>UpdateEmail({required String email,});
 Future<Either<failer,void>>UpdateUserName({required String username,});
 Future<Either<failer,void>>changepasswored({required String newpassword,});
+Future<Either<failer,void>>signOut();
 }

@@ -195,4 +195,16 @@ class AuthRepoImplementions implements AuthRepo {
    }
   
   }
+  
+  @override
+  Future<Either<failer, void>> signOut()async {
+    try{
+      await authService.logout();
+      return right(null);
+    }
+    catch(e){
+      return left(serverfailererror(e.toString()));
+    }
+   
+  }
 }

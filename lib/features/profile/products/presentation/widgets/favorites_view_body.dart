@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup_store/features/home/prsentation/widgets/best_saling_gridviwe.dart';
-import 'package:fruit_hup_store/features/home/prsentation/widgets/product_itam.dart';
 import 'package:fruit_hup_store/features/profile/products/presentation/manger/favorites_bloc.dart';
 
 class FavoritesViewBody extends StatefulWidget {

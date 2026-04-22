@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_hup_store/core/utils/app_colors.dart';
 
 class CustomRangeSlider extends StatefulWidget {
   final Function(RangeValues) onChanged;
@@ -39,11 +40,11 @@ class _CustomRangeSliderState extends State<CustomRangeSlider> {
                 left: startPos > 30 ? startPos - 30 : 0,
                 top: 0,
                 child: Text(
-                  "\$${_values.start.toInt()}",
+                  "\EGP${_values.start.toInt()}",
                   style: TextStyle(
-                    color: Colors.green,
+                    color: AppColors.primaryColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: 12,
+                    fontSize: 14,
                   ),
                 ),
               ),
@@ -51,11 +52,11 @@ class _CustomRangeSliderState extends State<CustomRangeSlider> {
                 left: endPos > 30 ? endPos - 30 : startPos + 40,
                 top: 0,
                 child: Text(
-                  "\$${_values.end.toInt()}",
+                  "\EGP${_values.end.toInt()}",
                   style: TextStyle(
-                    color: Colors.green,
+                    color: AppColors.primaryColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: 12,
+                    fontSize: 14,
                   ),
                 ),
               ),
@@ -67,7 +68,7 @@ class _CustomRangeSliderState extends State<CustomRangeSlider> {
                   values: _values,
                   min: min,
                   max: max,
-                  activeColor: Colors.green,
+                  activeColor:  AppColors.primaryColor,
                   inactiveColor: Colors.grey[300],
                   onChanged: (values) {
                     setState(() {
