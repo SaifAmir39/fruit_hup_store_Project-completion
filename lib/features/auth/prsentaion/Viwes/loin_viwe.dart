@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup_store/core/service/get_it_service.dart';
@@ -18,7 +19,10 @@ class LoinViwe extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignInCubit(authRepo: getIt.get<AuthRepo>()),
       child: Scaffold(
-        appBar: bulid_Appbar(title: "تسجيل دخول", context: context),
+        appBar: bulid_Appbar(title: "تسجيل دخول", context: context,
+        
+        ontaparrow: () =>  SystemNavigator.pop(),
+        ),
 
         body: BlocConsumer<SignInCubit, SignInState>(
           listener: (context, state) {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart' show AppBar, Navigator, Icons, Icon, Colors, Text, IconButton, Color;
 import 'package:fruit_hup_store/core/utils/app_text_styles.dart';
 
-AppBar bulid_Appbar({required String title,required context}) {
+AppBar bulid_Appbar({required String title,required context,void Function()? ontaparrow}) {
     return AppBar(
   leading: IconButton(onPressed: (){
 
-    Navigator.pop(context);
+ ontaparrow != null ? ontaparrow() : Navigator.pop(context);
 
   }, icon: Icon(Icons.arrow_back_ios_new,)),
 

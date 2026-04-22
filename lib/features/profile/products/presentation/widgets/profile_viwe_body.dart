@@ -63,7 +63,7 @@ class ProfileViweBody extends StatelessWidget {
         else if (state is LogoutError) {
       ScaffoldMessenger.of(context).showSnackBar(
   SnackBar(
-    content: Text("${state.message}"),
+    content: Text("${state.message }"),
   ),
 );
         }
