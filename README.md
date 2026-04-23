@@ -701,6 +701,4 @@ This project serves as an excellent learning resource for:
 **License**: Proprietary & Confidential
 
 </div>
-#   f r u i t _ h u p _ s t o r e _ P r o j e c t - c o m p l e t i o n 
- 
- 
+#
