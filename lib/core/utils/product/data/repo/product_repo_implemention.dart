@@ -152,5 +152,39 @@ catch(e){
    
     
   }
-}
+  
+  @override
+  Future<Either<failer, void>> addsearchHistoryProduct({required String productnameHistroy})async {
+     try{
+
+      await databaseService.AddData(path: "searchHistory",
+      data: {"productname": productnameHistroy}, 
+      documentid: productnameHistroy);
+         return Right(null);
+
+    }
+    catch(e){
+  print("CRASH ERROR GET CATEGORY:🎭🎭🎭  $e");
+      return Left(serverfailererror(e.toString()));
+
+    }
+   
+  }
+  
+  @override
+  Future<Either<failer, List<String>>> getsearchHistoryProduct({required String productnameHistroy})async {
+   try{
+     var data= await databaseService.getalldata(path: "searchHistory");
+     return Right(data.map((e) => e["productname"].toString()).toList());
+   }
+     catch(e){
+  print("CRASH ERROR GET CATEGORY:🎭🎭🎭  $e");
+      return Left(serverfailererror(e.toString()));
+
+    }
+   
+  }
+    
+  }
+
  

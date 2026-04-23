@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup_store/core/utils/Custome%20Bottun.dart';
@@ -129,9 +131,16 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                       canGo = shapingKey.currentState?.valdton() ?? false;
                     } else if (currentPage == 1) {
                       canGo = addressKey.currentState?.valdatio() ?? false;
-                    } else {
+                    }
+                    else if (currentPage == 2) {
                       canGo = true;
                     }
+                    else if (currentPage == 3) {
+                      canGo = true;
+                    } 
+                    
+                  
+
 
                     if (canGo) {
                       pageController.nextPage(
@@ -142,7 +151,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                     if (currentPage == 3) {
                       BlocProvider.of<CheckoutCubit>(context).addorder();
                       print("order added");
-                    } else {
+                    } else  {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text("اكمل البيانات الأول 😅"),

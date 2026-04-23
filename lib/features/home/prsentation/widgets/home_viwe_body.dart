@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fruit_hup_store/core/utils/app_colors.dart';
 import 'package:fruit_hup_store/core/utils/custome_search%20_textfailed.dart';
+import 'package:fruit_hup_store/core/utils/product/bloc/search_history_bloc.dart';
 import 'package:fruit_hup_store/features/home/prsentation/manger/bloc/home_bloc.dart';
 import 'package:fruit_hup_store/features/home/prsentation/widgets/Best_saling_header.dart';
 import 'package:fruit_hup_store/features/home/prsentation/widgets/best_saling_gridviwe.dart';
@@ -53,55 +54,128 @@ class _HomeViweBodyState extends State<HomeViweBody> {
                 BlocProvider.of<HomeBloc>(context).add(OnTapTedxtFailedEvent());
                 },)),
                 SliverToBoxAdapter(child: SizedBox(height: 12)),
+                 BlocBuilder<SearchHistoryBloc, SearchHistoryState>(builder: (context, state) {
+              if(state is ProductNotFoundinSearch){
 
-                if(state is NoproductFound)
-                
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: Center(
-              child:Column(
-                children: [
-                  SvgPicture.asset(
-                    width: 230,
-                    height: 230,
-                    "assets/images/Noproductfound.svg"),
-            
-                    SizedBox(
-                      height: 20,
+                return SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        SvgPicture.asset(
+                          width: 230,
+                          height: 230,
+                          "assets/images/Noproductfound.svg"),
+                        SizedBox(height: 20),
+                        Text(
+                          'البحث',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: const Color(0xFF616A6B),
+                            fontSize: 16,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'عفوًا... هذه المعلومات غير متوفرة للحظة',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: const Color(0xFF949D9E),
+                            fontSize: 13,
+                            fontFamily: 'Cairo',
+                            fontWeight: FontWeight.w400,
+                            height: 1.60,
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(
-                'البحث',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: const Color(0xFF616A6B) /* Grayscale-600 */,
-                  fontSize: 16,
-                  fontFamily: 'Cairo',
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-            
-               Text(
-                'عفوًا... هذه المعلومات غير متوفرة للحظة',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: const Color(0xFF949D9E) /* Grayscale-400 */,
-                  fontSize: 13,
-                  fontFamily: 'Cairo',
-                  fontWeight: FontWeight.w400,
-                  height: 1.60,
-                ),
-              ),
-            
-                ],
-              ) ,
-            ),
-          ),
-            if(state is GetSerachproducteSucess)
+                  ),
+                );
+              }
+              else if (state is SerachProductSucess){
+               return BestSalingGridviwe(products: state.products,);
+              }
+              else if (state is GetSerarchHistroyEmptyState){
+               return SliverToBoxAdapter(child: 
 
-             BestSalingGridviwe(products: state.products,),
+               Align(
+                 alignment: Alignment.center,
+                 child: Text(
+                  'لا يوجد سجلات بحث',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: const Color(0xFF616A6B),
+                    fontSize: 16,
+                    fontFamily: 'Cairo',
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+               ),
+               
+               );
+              }
+              else if (state is GetSerarchHistroySucessState){
+               return SliverList.builder(
+                itemCount: state.products.length,
+                itemBuilder: (context, index) {
+                 return GestureDetector(
+                   onTap: () {
+                      BlocProvider.of<SearchHistoryBloc>(context)
+                      .add(SerachProducteEvent(text: state.products[index]));
+                   },
+                   child: Container(
+                    
+                     child: Row(
+                       mainAxisSize: MainAxisSize.min,
+                       mainAxisAlignment: MainAxisAlignment.end,
+                       crossAxisAlignment: CrossAxisAlignment.center,
+                       spacing: 235,
+                       children: [
+                         Container(width: 24, height: 24, child: Stack()),
+                         Container(
+                           width: 84,
+                           child: Row(
+                             mainAxisSize: MainAxisSize.min,
+                             mainAxisAlignment: MainAxisAlignment.end,
+                             crossAxisAlignment: CrossAxisAlignment.center,
+                             spacing: 16,
+                             children: [
+                               Text(
+                                 '${state.products[index]}',
+                                 textAlign: TextAlign.right,
+                                 style: TextStyle(
+                                   color: const Color(0xFF0C0D0D) /* Grayscale-950 */,
+                                   fontSize: 16,
+                                   fontFamily: 'Cairo',
+                                   fontWeight: FontWeight.w400,
+                                   height: 1.40,
+                                 ),
+                               ),
+                               Container(
+                                 width: 24,
+                                 height: 24,
+                                 clipBehavior: Clip.antiAlias,
+                                 decoration: BoxDecoration(),
+                                 child: Stack(),
+                               ),
+                             ],
+                           ),
+                         ),
+                       ],
+                     ),
+                   ),
+                 );
+               });
+              }
+
+
+            
+              return SliverToBoxAdapter(child: SizedBox(height: 0));
+            }),
+
+              
             
             SliverToBoxAdapter(child: SizedBox(height: 12)),
             if(state is HomeProductsSucessState)

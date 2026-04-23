@@ -1,5 +1,6 @@
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup_store/core/utils/product/domain/entities/product_entities.dart';
 import 'package:fruit_hup_store/core/utils/product/domain/repo/product_repo.dart';
 import 'package:meta/meta.dart';
@@ -20,10 +21,7 @@ class ProductesBloc extends Bloc<ProductesEvent, ProductesState> {
         (products) => emit(ProductsSucessState(products: products)),
       );
     });
-      on<OnPrassTedxtFailedEvent>((event, emit) async {
-      emit(TextFailedisempty());
     
-    });
 
     on<GetProductesByFilters>((event, emit) async {
       emit(ProductsLoadingState());
@@ -33,23 +31,11 @@ class ProductesBloc extends Bloc<ProductesEvent, ProductesState> {
         (products) => emit(GetProductesFiltersSucessState(products: products)),
       );
     });
-    on<SerachProducteEvent>((event, emit) async {
-      emit(ProductsLoadingState());
-      final result = await productRepo.SearchProduct(productname: event.text);
-      result.fold(
-        (failure) => emit(ErrorProductsState(errormassge: failure.massage)),
-        (products) {
-          if (products.isEmpty) {
-            emit(ProductNotFoundinSearch());
-          }
-         else{
-            emit(GetSerachproducteSucessState(products: products));
-         } 
-        }
-      );
-    });
+   
+   
+    }
+
     
 
   
-}
 }

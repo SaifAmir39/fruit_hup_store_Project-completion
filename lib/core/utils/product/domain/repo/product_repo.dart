@@ -15,6 +15,9 @@ abstract class ProductRepo {
     
   );
   Future<Either<failer,List<Productentity>>> SearchProduct({required String productname});
+  Future<Either<failer,void>> addsearchHistoryProduct({required String productnameHistroy});
+   Future<Either<failer,List<String>>> getsearchHistoryProduct({required String productnameHistroy});
+
 Future<Either<failer,void>> addProducttoFavorites({required Productentity productentity});
  Future<Either<failer,List<Productentity>>> getFavoritesProducts();
 

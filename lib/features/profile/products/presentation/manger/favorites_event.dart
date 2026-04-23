@@ -9,3 +9,4 @@ class AddtoFavoritesEvent extends FavoritesEvent{
 class GetFavoritesEvent extends FavoritesEvent{
  
 }
+
